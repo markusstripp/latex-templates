@@ -1,0 +1,62 @@
+\begin{figure}[ht]
+\centering
+\scalebox{0.8}{
+\begin{tikzpicture}
+		% Background boxes
+		\filldraw [line width=1pt, color=aaublue, fill=aaublue!15, rounded corners] (-6,-6)  rectangle (14,6);
+		\filldraw [line width=1pt, color=aaudarkblue, fill=aaudarkblue!15, rounded corners] (6,-3)  rectangle (13,5);
+		\filldraw [line width=1pt, color=aaulightgray!135, fill=aaulightgray!50, rounded corners] (-5,-5)  rectangle (5,5);
+		
+		\node[above, aaublue] at(-3,5) {$\dots$ Kakeya problem};
+		
+		% EUCLIDIAN
+		% Creating the axis and the grid
+        	\draw[aaublue,very thin] (-4,-4) grid (4,4);
+        	\foreach \i in {-3,...,3} \draw (\i,-.1)--(\i,.1);
+        	\foreach \i in {-3,...,3} \draw (-.1,\i)--(.1,\i);
+        	\node[below] at (3.75,0) {$1$};
+       	\node[right] at (0,3.75) {$1$}; 
+        	\draw[->] (-4,0) -- (4,0);
+        	\draw[->] (0,-4) -- (0,4);
+        
+        	% Creating the deltoid curve, circle and the unit line segment
+        	\draw (0,0) circle (3);
+        	\def\a{1} \def\b{3}
+        	\draw[line width=1.5pt, aaudarkblue] plot[samples=100, domain=0:360, smooth, variable=\t] ({(\b-\a)*cos(\t)+\a*cos((\b-\a)*\t/\a},{(\b-\a)*sin(\t)-\a*sin((\b-\a)*\t/\a});
+        	\draw[line width=1.5pt] (-1,0) -- (3,0);
+        	\node[above, font=\boldmath] at (0.5,0) {$1$};
+        
+        	% Label
+        	\node[above] at (-3,4) {Euclidean};
+        
+        	% FINITE
+        	\foreach \i in {8, 9, 10, 12} \filldraw (\i,3) circle(0.1); % first row
+        	\foreach \i in {11} \draw (\i,3) circle(0.1);
+        	\foreach \i in {9, 11} \filldraw (\i,2) circle(0.1); % second row
+        	\foreach \i in {8, 10, 12} \draw (\i,2) circle(0.1);
+        	\foreach \i in {9, 10, 12} \filldraw (\i,1) circle(0.1); % third row
+        	\foreach \i in {8, 11} \draw (\i,1) circle(0.1);
+        	\foreach \i in {9, 11, 12} \filldraw (\i,0) circle(0.1); % fourth row
+        	\foreach \i in {8, 10} \draw (\i,0) circle(0.1);
+        	\foreach \i in {8,...,12} \filldraw (\i,-1) circle(0.1); % fifth row
+        
+        	\draw (7.5,3.5) -- (7.5,-2.5);
+        	\draw (6.5,-1.5) -- (12.5,-1.5);
+        
+        	% Label
+        	\node at (7,3) {$4$};
+        	\node at (7,2) {$3$};
+        	\node at (7,1) {$2$};
+        	\node at (7,0) {$1$};
+        	\node at (7,-1) {$0$};
+        
+        	\node at (8,-2) {$0$};
+        	\node at (9,-2) {$1$};
+        	\node at (10,-2) {$2$};
+        	\node at (11,-2) {$3$};
+        	\node at (12,-2) {$4$};
+        
+        	\node[above, aaudarkblue] at (7.25,4) {Finite};
+\end{tikzpicture}
+}
+\end{figure}

@@ -1,0 +1,73 @@
+\documentclass{beamer}
+
+\usepackage[english]{babel}
+
+\usepackage{../presentation-template/beamerthemeaau} % Load theme from different directory
+\usetheme{aau}
+\input{quiz-preamble.tex} 
+
+\logo{
+	\includegraphics[width=3cm]{fig/aau-logo.pdf}
+}
+
+\title[My quiz]{This is my quiz} 
+\subtitle{A template for quizzes}
+\author[Markus Tripp]{Markus Tripp} 
+\date[]{\today}
+\titlegraphic{
+	\include{fig/cover.tex}
+}
+
+\setcounter{quizcounter}{0} 
+
+\begin{document}
+
+\maketitle
+
+\quizframe{Cancellability Rules}{%
+	Let $A$, $B$ two $m \times n$ matrices and $x \in \mathbb{R}^n$ a vector such that
+	\[ Ax = Bx \]
+	holds. This implies: $A = B$.
+}{%
+	\answer{True}
+	\correct{False}
+}{}
+
+\quizframe{Cancellability Rules}{%
+	Let $A$, $B$ two $m \times n$ matrices such that for all vectors $x \in \mathbb{R}^n$
+	\[ Ax = Bx \]
+	holds. This implies: $A = B$.
+}{%
+	\correct{True}
+	\answer{False}
+}{}
+
+\quizframe{Vector Spaces}{
+	Which of the following sets are vector spaces?
+}{%
+ 	\correct{$\{ x = (x_1,x_2,x_3)^t \in \R^3 : \begin{pmatrix} 1 & 0 & 2 \end{pmatrix}x = 0 \}$}
+ 	\correct{The set of solutions $x$ of $Ax=0$, where $A$ is a $m \times n$ matrix}
+	\answer{The set of $2\times 2$ matrices $A$ with $\det{A}=0$}
+	\correct{The set of polynomials $p(x)$ with $\int_{-1}^1 p(x) \; \mathrm{d}x = 0$}
+}{}
+
+\quizframe{Linear Independence}{%
+	Let $V$ be a vector space over a field $K$, and let $A = \{v_1, \dots , \, v_k \} \subseteq V$. 
+	If there is \textbf{a} vector $v \in V$, which can be uniquely written as a linear combination 
+	of $v_1$, \dots, $v_k$, then $A$ is linear independent.
+}{%
+	\correct{True}
+	\answer{False}
+}{
+	\onslide<3->{\textcolor{aaudarkblue}{$\rightsquigarrow$} Is also the converse true?}
+}
+
+
+\begin{frame}{Improvements?}
+\begin{block}{Improvements?}
+	Feel free to adapt/polish this template in any way you like. I am happy to discuss ideas and suggestions for general improvement of this template!
+\end{block}
+\end{frame}
+
+
+\end{document}

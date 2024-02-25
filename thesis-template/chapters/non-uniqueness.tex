@@ -1,0 +1,39 @@
+In the context of factorization, once the existence of factorizations has been clarified and the characteristics of irreducible elements are sufficiently defined, a natural question arises: Is this multiplicative representation unique? 
+
+In this final chapter, our aim is not to thoroughly study the non-uniqueness of factorizations in $\M{n}$ but rather to provide insight into possible approaches and questions that can be explored. First, we aim to present a brief example that illustrates the non-uniqueness of factorizations in $\M{2}$ concerning both factorization length and the factors involved.
+
+\begin{example}
+Consider the matrix
+\[ A \coloneqq \begin{pmatrix} 2 & 3 \\ 1 & 3 \end{pmatrix} \]
+and two of its factorizations, namely
+\[ A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \quad \text{and} \quad A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & 3 \end{pmatrix}. \]
+Note that in one factorization, only irreducible FE-triangular matrices are required, while in the other, an atom with no zero-entries is involved.
+\end{example}
+
+Once the uniqueness of factorizations is off the table, the goal is to quantify the extent of non-uniqueness. 
+
+\begin{remark*}
+Recall that in the setting of integral domains, an integral domain $R$ is a unique factorization domain, i.e., every non-zero and non-unit element has a unique factorization up to the order of the factors and multiplication by units, if and only if $R\setminus\{ 0 \}$ is atomic and every atom is a prime element\footnote{An element $0 \neq p \in R\setminus \mathcal{E}(R)$ of a commutative ring $R$ is called \emph{prime} if whenever $p \mid  a\cdot b$ for some $a$, $b \in R$, then $p$ either divides $a$ or $p$ divides $b$.}~\cite[Chapter III, § 5, Theorem 5.6]{Jantzen2013}.
+\end{remark*}
+
+To put this another way, in a commutative context, the connection between uniqueness of factorizations and prime elements is intrinsic. However, the definition cannot effortlessly be transferred to non-commutative structures. In~\cite[Section 1.1]{Baeth2020}, two concepts of prime elements have been introduced for semigroups that are not necessarily commutative: prime-like and almost prime-like elements. Conversely, one can study various concepts, such as the length set and the elasticity, which have been introduced in Definition~\ref{def:length-set}, to directly measure how non-unique factorizations are. In the end, we want to present that there exist matrices whose length set can grow arbitrarily large. Put differently, the factorizations exhibit maximum non-uniqueness in terms of factorization length.
+
+\begin{proposition}[Elasticity of $\M{n}$,~{\cite[Theorem 3.6]{Baeth2020}}]
+The elasticity of $\M{n}$ is infinite, i.e, $\rho(\M{n}) = \infty$.
+\end{proposition}
+
+\begin{proof}
+For $p \in \mathbb{P}$, the matrix 
+\[ A_p \coloneqq \begin{pmatrix} p & 0 & \ldots & 0 & p \\ 0 & 1 & \ldots &  0 & 0\\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0  & \ldots & 1 & 0 \\ 0 & 0 & \ldots & 0 &  p \end{pmatrix} \]
+can be factorized in
+\[ A_p = S_n(p) R_{1n}(1)^p S_1(p) \quad \text{and} \quad A_p = R_{1n}(1) S_1(p) S_n(p).  \]
+Hence, it can be concluded that $\{3,\,p+2\} \subseteq L(A_p)$, which implies that we obtain a lower bound on the elasticity of $A_p$ depending on $p$, i.e., $\rho(A_p) = \sup L(A_p)/\min L(A_p) \geq \frac{p+2}{3}$. Choosing $p \in \mathbb{P}$ arbitrarily large yields the statement.
+\end{proof}
+
+\begin{remark*}
+\mbox{}\vspace{-2\topskip}
+\begin{enumerate}[label=(\alph*)]
+\item Moreover, as shown in~\cite[Theorem 3.11]{Baeth2020}, $\M{n}$ has full elasticity. This means that for every $r \in \mathbb{Q}_{\geq 1}$ there exists a matrix $A \in \M{n}$ such that $\rho(A) = r$.
+\item The behavior of factorization in the set of upper triangular matrices over $\NN$ has been extensively studied in~\cite[Section 3]{Baeth2020}. Hence, it would be particularly intriguing to investigate how matrices in $\M{2}$ with no zero-entries factor in atoms. Which matrices have factorizations only consisting of irreducible FE-triangular matrices? How do matrices in $S$-form factor? Which effect do irreducible non-FE-triangular matrices have on the (non-)uniqueness of factorizations? What happens to the factorizations of powers of irreducibles?
+\end{enumerate}
+\end{remark*}

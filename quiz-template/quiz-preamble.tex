@@ -1,0 +1,58 @@
+\usepackage{environ}
+\NewEnviron{myenumerate}{% Handles the case when body in enumerate is empty
+	\ifx\BODY\empty
+    		\relax
+	\else
+		\begin{enumerate}[A]
+			\BODY
+		\end{enumerate}
+	\fi
+}
+
+\newcounter{quizcounter}
+
+\newcommand{\quizframe}[4]{%
+\begin{frame}{Quiz \thequizcounter} 
+	\only<1>{\stepcounter{quizcounter}} % Increase counter
+	\framesubtitle{\ifx&#1&\else(#1)\fi}
+	#2 % Problem declaration
+	
+	\bigskip \bigskip
+	\begin{myenumerate} % Answers
+		#3 
+	\end{myenumerate}
+	\bigskip
+	#4 % further text
+\end{frame}
+}
+
+\tcbset{
+    answerbox/.style={
+    		boxsep=2pt,
+        enlarge left by=-0.8cm,
+        left=0.8cm-2pt, 
+        before upper=\raggedright
+    }
+}
+
+\newcommand{\correct}[1]{%
+	\only<1>{
+		\renewcommand{\borderlinecolor}{transparent}
+		\begin{tcolorbox}[answerbox, colback=white, opacityback=0]
+			\item #1
+		\end{tcolorbox}
+	}
+	\only<2->{
+		\begin{tcolorbox}[answerbox]
+			\item #1 \hfill \textcolor{aaudarkblue}{\cmark}
+		\end{tcolorbox}
+	} 
+}
+
+\newcommand{\answer}[1]{%
+	\renewcommand{\borderlinecolor}{transparent}
+	\begin{tcolorbox}[answerbox, colback=white, opacityback=0]
+		\item #1
+	\end{tcolorbox}
+	\renewcommand{\borderlinecolor}{block title.bg}
+}

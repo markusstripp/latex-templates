@@ -1,0 +1,175 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{aaubeamer}[2024/02/23 Custom beamer theme.]
+
+%% General packages
+\RequirePackage[utf8]{inputenc} % For coding and special characters
+\RequirePackage[T1]{fontenc} 
+\RequirePackage{lmodern} % Fancier font
+
+\RequirePackage{graphicx} 
+\RequirePackage{blindtext}
+\RequirePackage{lmodern}
+\RequirePackage{calc}
+\RequirePackage{tcolorbox}
+
+\RequirePackage{todonotes}
+\setuptodonotes{inline}
+
+%% Colors
+\RequirePackage{xcolor}
+\definecolor{aaudarkblue}{RGB}{67, 111, 128}
+\definecolor{aaublue}{RGB}{83, 159, 198}
+\definecolor{aaulightgray}{RGB}{232,232,232}
+\definecolor{aaugray}{RGB}{98,98,98}
+
+%% For typesetting math
+\input{../math-commands.sty}
+
+\tikzset{
+	every picture/.append style={
+    		remember picture
+	},
+	initialtext/.style={
+    		shape=rectangle,
+    		inner sep=0pt,
+    		text depth=0pt
+ 	},
+ 	targettext/.style={
+    		shape=rectangle,
+    		inner sep=0pt,
+    		text depth=0pt,
+    		font=\footnotesize,
+    		color=aaudarkblue,
+    		overlay
+ 	},
+	textarrow/.style={
+    		->,
+    		thick,
+    		color=aaudarkblue,
+    		font=\footnotesize\itshape
+	}
+}
+
+%% Customizing theme
+\RequirePackage{caption}
+\captionsetup[figure]{name=Fig.,labelfont=bf}
+
+\setbeamersize{text margin left=1em} 
+\setbeamertemplate{navigation symbols}{} % Remove navigation bar
+\usefonttheme{serif}
+\setbeamertemplate{navigation symbols}{}
+\hypersetup{pdfstartview={Fit}}
+\useoutertheme[subsection=false]{miniframes} % For miniframes in the headline
+
+\setbeamercolor{foot}{fg=white, bg=aaudarkblue} % Customizing the foot
+\setbeamertemplate{footline}[text line]{%
+	\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex]{foot}
+		\usebeamerfont{foot} \sffamily \insertshorttitle~-~\insertshortauthor
+	\end{beamercolorbox}%
+}
+
+\defbeamertemplate*{title page}{customized}[1][]{% Customizing the titlepage
+	\vspace{-1cm}\setbeamertemplate{headline}{bg=white}
+	\begin{center}
+		\usebeamerfont{title}\inserttitle\par
+		\usebeamerfont{subtitle}\insertsubtitle\par
+		\usebeamerfont{titlegraphic}\inserttitlegraphic \vspace{-0.75cm}
+		\usebeamerfont{author}\insertauthor\par
+		\usebeamerfont{date}\insertdate
+	\end{center}
+}
+\let\oldmaketitle\maketitle
+\renewcommand{\maketitle}{%
+	\begingroup
+		\setbeamertemplate{headline}{}
+		\oldmaketitle
+	\endgroup
+}
+
+%% Font and color choices
+\setbeamercolor{palette tertiary}{bg=aaulightgray} % Set the background color for the headline bar
+
+\setbeamercolor{caption name}{fg=black} 
+
+\setbeamerfont{title}{series=\bfseries, family=\sffamily\selectfont} 
+
+\setbeamerfont{frametitle}{series=\bfseries, family=\sffamily\selectfont}
+\setbeamercolor{frametitle}{bg=white,fg=black}
+
+\setbeamerfont{headline}{family=\sffamily\selectfont} 
+\setbeamercolor{section in head/foot}{fg=black} % Set the text color for sections/subsections in the header to black
+\setbeamercolor{subsection in head/foot}{fg=black}
+
+\setbeamerfont{author}{series=\mdseries, family=\rmfamily\selectfont} 
+\setbeamerfont{titlegraphic}{series=\mdseries, family=\rmfamily\selectfont} 
+
+\setbeamercolor{block title}{bg=aaudarkblue!65, fg=black} 
+\setbeamercolor{block body}{bg=aaudarkblue!15, fg=black}
+
+\setbeamercolor{alerted text}{fg=aaudarkblue}
+\setbeamerfont{alerted text}{series=\bfseries} 
+                                     
+%% Customizing enumerate
+\setbeamercolor{item}{fg=aaudarkblue} % Change item color
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{itemize item}[triangle] % Change itemize symbol to triangle
+\setbeamertemplate{itemize subitem}[triangle]
+
+\newlength{\mywidth}
+\newenvironment{cenumerate}[2][1]{% Argument: desired label prefix
+	\settowidth{\mywidth}{\text{(#2)}} % Calculate the width of added prefix and brackets
+	\setlength{\leftmargini}{\dimexpr\leftmargini + \mywidth\relax} % Set new left margin as default left margin + added label
+\begin{enumerate}[#1]
+\setbeamertemplate{enumerate items}{(#2\insertenumlabel)}
+}{\end{enumerate}}
+                                     
+%% Customizing blocks
+\newcommand{\borderlinecolor}{block title.bg}
+\useinnertheme[rounded,shaded=false]{tcolorbox}
+\tcbsetforeverylayer{
+	borderline={1pt}{0pt}{\borderlinecolor} % Add borderline in corresponding block color
+}
+
+\renewenvironment{definition}[1][]{%
+	\setbeamercolor{block title}{bg=aaulightgray, fg=black} 
+    \setbeamercolor{block body}{bg=aaulightgray!50, fg=black}
+\begin{block}{\textbf{Definition}\ifx\empty#1\empty \else\textbf{:} #1 \fi}}{\end{block}}
+
+\renewenvironment{theorem}[1][]{%
+	\setbeamercolor{block title}{bg=aaublue!65, fg=black} 
+    \setbeamercolor{block body}{bg=aaublue!15, fg=black}
+\begin{block}{\textbf{Theorem}\ifx\empty#1\empty \else\textbf{:} #1 \fi}}{\end{block}}
+
+\renewenvironment{lemma}[1][]{%
+	\setbeamercolor{block title}{bg=aaublue!65, fg=black} 
+    \setbeamercolor{block body}{bg=aaublue!15, fg=black}
+\begin{block}{\textbf{Lemma}\ifx\empty#1\empty \else\textbf{:} #1 \fi}}{\end{block}}
+
+\newenvironment{proposition}[1][]{%
+	\setbeamercolor{block title}{bg=aaublue!65, fg=black} 
+    \setbeamercolor{block body}{bg=aaublue!15, fg=black}
+\begin{block}{\textbf{Proposition}\ifx\empty#1\empty \else\textbf{:} #1 \fi}}{\end{block}}
+
+\renewenvironment{corollary}[1][]{%
+	\setbeamercolor{block title}{bg=aaublue!65, fg=black} 
+    \setbeamercolor{block body}{bg=aaublue!15, fg=black}
+\begin{block}{\textbf{Corollary}\ifx\empty#1\empty \else\textbf{:} #1 \fi}}{\end{block}}
+
+\renewenvironment{proof}[1][]{%
+	\setbeamercolor{block title}{bg=aaublue!65, fg=black} 
+    \setbeamercolor{block body}{bg=aaublue!15, fg=black}
+\begin{block}{\emph{Proof}\ifx\empty#1\empty \else~(#1)\fi.}}{\hfill $\square$ \end{block}}
+
+\newenvironment{lproof}[1][]{\emph{Proof}\ifx\empty#1\empty \else~(#1)\fi.~}{\hfill $\square$} % 'loose' proof environment (without block)
+
+%% Squared paper
+\newcommand\squaredpaper[2][0.5cm]{% 
+	\vskip 0.5\baselineskip%
+	\begin{tikzpicture}[gray!50,step=#1]
+		\pgfmathtruncatemacro\number{(\linewidth-\pgflinewidth)/#1}% maximale number of boxes per row
+		\draw (0,0) rectangle (\number*#1,#2*#1) (0,0) grid (\number*#1,#2*#1);
+	\end{tikzpicture} \\
+}
+
+%% References 
+\RequirePackage{hyperref} 

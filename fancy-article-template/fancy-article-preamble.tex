@@ -1,0 +1,125 @@
+%% General packages
+\usepackage[utf8]{inputenc} % For coding and special characters
+\usepackage[T1]{fontenc} 
+\usepackage{lmodern} % Fancier font
+\usepackage[margin=0.9in, top=1.2in, bottom=1in]{geometry}
+
+\usepackage{graphicx}  
+\usepackage{blindtext}
+
+\usepackage[textsize=tiny, textwidth=2cm]{todonotes}
+
+%% Design choices
+\usepackage[labelfont=bf]{caption}
+\usepackage[most]{tcolorbox} 
+\usepackage{enumitem}
+\usepackage{float}
+\setlist[itemize]{label=$\blacktriangleright$}
+\usepackage{sectsty}
+\sectionfont{\centering}
+
+%% Colors
+\usepackage{xcolor} 
+\definecolor{logoblue}{RGB}{140,193,227}
+\definecolor{logogray}{RGB}{232,232,232}
+\definecolor{logopink}{RGB}{227, 140, 149}
+
+%% For typesetting math
+\input{../math-commands.sty}
+
+%% (Framed) theorem environments
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfdefinestyle{theoremstyle}{% Define new style for theorems
+	linecolor=logoblue,
+	linewidth=1pt,
+	frametitlerule=false,%
+	apptotikzsetting={\tikzset{mdfframetitlebackground/.append style={
+	color=logoblue!65}}},
+	innertopmargin=\topskip,
+	innerbottommargin=\topskip,
+	nobreak=false,
+	backgroundcolor=logoblue!15,
+	frametitlefont=\bfseries,
+	theoremtitlefont=\normalfont,
+	footnoteinside=false
+}
+\mdtheorem[style=theoremstyle]{theorem}[examplex]{Theorem} 
+\mdtheorem[style=theoremstyle]{proposition}[examplex]{Proposition} 
+\mdtheorem[style=theoremstyle]{lemma}[examplex]{Lemma} 
+\mdtheorem[style=theoremstyle]{corollary}[examplex]{Corolllary} 
+
+\mdfdefinestyle{definitionstyle}{% Define new style for definitions
+	linecolor=logogray!135,
+	linewidth=1pt,
+	frametitlerule=false,
+	apptotikzsetting={\tikzset{mdfframetitlebackground/.append style={
+	color=logogray}}},
+	innertopmargin=\topskip,
+	innerbottommargin=\topskip,
+	nobreak=false,
+	backgroundcolor=logogray!50,
+	frametitlefont=\bfseries,
+	theoremtitlefont=\normalfont,
+	footnoteinside=false
+}
+\mdtheorem[style=definitionstyle]{definition}[examplex]{Definition} 
+
+\newtheoremstyle{examplestyle} % Define new style for examples (bold heading, linebreak, normal text)
+	{\topsep}{\topsep}
+	{}{}
+	{\bfseries}{}
+	{\newline}{}
+\theoremstyle{examplestyle} % Activate style
+\newtheorem{examplex}{Example} % New environment for examples
+\newenvironment{example} % Add triangle at the end of an example environment
+	{\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\examplex}
+	{\popQED\endexamplex}
+  
+\newtheoremstyle{remarkstyle} % Define new style for remarks (bold heading, nomral text)
+	{\topsep}{\topsep}
+	{}{}
+	{\bfseries}{.}
+	{5pt plus 1pt minus 1pt}{}
+\theoremstyle{remarkstyle} % Activate style
+\newtheorem{remarkx}[examplex]{Remark} % New environment for remarks
+\newenvironment{remark} % Add diamond at the end of an remark environment
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\diamond$}\remarkx}
+  {\popQED\endremarkx}
+  
+%% References
+\usepackage[
+	backend=biber, 
+	bibstyle=numeric, 
+	natbib=true, 
+	hyperref=true, 
+]{biblatex} 
+\addbibresource{fancy-article-template.bib} % Include bib-file
+\nocite{*}
+\usepackage{csquotes}
+
+\usepackage{hyperref} 
+
+%% Make title
+\newcommand{\myabstract}[1]{%
+	\vspace{-6ex}
+	\begin{tcolorbox}[colback = logopink!15, colframe = logopink, width=\linewidth, arc=1mm, auto outer arc]
+		\normalsize\textsf{\textbf{Abstract.}}\small~#1
+	\end{tcolorbox}
+	\vspace{1.5ex}
+}
+
+\makeatletter
+\newcommand{\blthanks}[1]{% Blind thanks (without marker and symbol)
+	\protected@xdef\@thanks{\@thanks\protect\footnotetext[0]{#1}}}
+\makeatother
+
+\let\cdate\date % Save copy of \date
+\renewcommand{\date}[1]{\cdate{\blthanks{\emph{Date:}~#1.}}} % Move date in footnote
+
+\let\svthefootnote\thefootnote
+\newcommand\freefootnote[1]{% Footnote without marker and number
+  \let\thefootnote\relax%
+  \footnotetext{#1}%
+  \let\thefootnote\svthefootnote%
+}
+\newcommand{\keywords}[1]{\freefootnote{\emph{Key words and phrases:}~#1.}}

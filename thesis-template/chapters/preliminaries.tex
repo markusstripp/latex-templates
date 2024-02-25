@@ -1,0 +1,41 @@
+All sorts of things are explained and introduced here.
+
+\begin{definition}[Group action]
+	Let $G$ be a group and $X$ a set. A mapping $\alpha:G\times X \to X$ that satisfies
+	\begin{enumerate}[label=(A\arabic*)]
+		\item $\alpha(e,x) = x$,
+		\item $\alpha(g,\alpha(h,x))=\alpha(gh,x)$
+	\end{enumerate}
+	for all $g$, $h \in G$ and $x \in X$ is called a \emph{group action} of $G$ on $X$.
+\end{definition}
+
+\begin{remark*}
+	It is very common that one replaces $\alpha$ with a dot. Then the two above axioms read as $e\cdot x = x$ and $g\cdot (h \cdot x) = (gh) \cdot x$.
+\end{remark*}
+
+\section{Digression on finite Kakeya sets}
+\label{sec:kakeya}
+
+\begin{example}[Kakeya set in $\F_3^2$]\label{ex:kakeya-set}
+	We consider the finite field $\F_3 = \Z/3\Z = \{ 0+3\Z,\, 1+3\Z,\, 2+3\Z \}$. 
+	For the sake of readability, we will denote the representative for each residue class in the following discussion. 
+	Our goal is to find a non-trivial Kakeya set, denoted as $K \subseteq \F_3^2$, which contains a line in each direction. 
+	The directions we are considering are as follows:  $\left[ (1,0) \right] = \{ (1,0),\, (2,0) \}$, 
+	$\left[ (0,1) \right] = \{ (0,1),\, (0,2) \}$, $\left[ (1,1) \right] = \{ (1,1),\, (2,2) \}$, and 
+	$\left[ (1,-1) \right] = \{ (1,2),\, (2,1) \}$ (note: $(1,-1) = (1,2)$). 
+	As an example, we select the following lines:
+	\begin{align*}
+		\fline_{(1,0),\, (0,0)} &= \{ (0,0) + t(1,0) : t \in \{0,\, 1, \, 2\} \} = \{ (0,0),\, (1,0),\, (2,0) \}, \\
+		\fline_{(0,1),\, (2,0)} &= \{ (2,0),\, (2,1),\, (2,2) \}, \quad \fline_{(1,1),\, (0,0)} = \{ (0,0),\, (1,1),\, (2,2) \} \\
+		\fline_{(1,-1),\, (1,2)} &= \{ (1,2),\, (2,1),\, (0,0) \},
+	\end{align*}
+	resulting in the Kakeya set $K \subseteq \F_3^2$:
+	\begin{align*}
+		K &\coloneqq \fline_{(1,0),\, (0,0)} \cup \fline_{(0,1),\, (2,0)} \cup \fline_{(1,1),\, (0,0)} \cup \fline_{(1,-1),\, (1,2)} \\
+		&= \{ (0,0),\, (1,0),\, (1,1),\, (1,2),\, (2,0),\, (2,1),\, (2,2) \}.
+	\end{align*}
+\end{example}
+
+\section{Improvements?}
+\label{sec:improv}
+Feel free to adapt/polish this template in any way you like. I am happy to discuss ideas and suggestions for general improvement of this template!

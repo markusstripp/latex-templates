@@ -1,0 +1,44 @@
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsfonts}
+\RequirePackage{amstext}
+\RequirePackage{amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{arydshln}
+\RequirePackage{nicematrix}
+\RequirePackage{colonequals}
+\RequirePackage{pifont} % provides check- and x-mark
+\RequirePackage{wasysym}
+\RequirePackage{siunitx}
+\sisetup{
+	group-digits = false
+}
+
+\RequirePackage{tikz}
+\usetikzlibrary{decorations.pathmorphing, shapes, positioning, calc}
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{53}}
+\newcommand*{\logeq}{\ratio\Leftrightarrow}
+
+\newcommand{\N}[0]{\mathbb{N}}
+\newcommand{\NN}[0]{\mathbb{N}_0}
+\newcommand{\Z}[0]{\mathbb{Z}}
+\newcommand{\R}[0]{\mathbb{R}}
+\newcommand{\C}[0]{\mathbb{C}}
+\newcommand{\F}[0]{\mathbb{F}}
+\renewcommand{\P}[0]{\mathbb{P}}
+\newcommand{\E}[0]{\mathbb{E}}
+\newcommand{\V}[0]{\mathbb{V}}
+\newcommand{\intset}[2][1]{%
+	\ifnum#1=0
+		\{0,\, 1,\, 2,\, \dots,\, #2\}
+    \else
+		\{1,\, 2,\, 3,\, \dots,\, #2\}
+    \fi
+}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\class}{[}{]}

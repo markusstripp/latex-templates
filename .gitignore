@@ -1,0 +1,16 @@
+*.aux
+*.synctex.gz
+*.out.ps
+*.toc
+*.dvi
+*.bcf
+*.run.xml
+*.snm
+*.nav
+*.bbl
+*.bbg
+*.blg
+*.log
+*.out
+
+.DS_Store

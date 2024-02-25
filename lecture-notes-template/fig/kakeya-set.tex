@@ -1,0 +1,76 @@
+\begin{figure}[ht]
+\centering
+\scalebox{0.75}{
+\begin{tikzpicture}
+	% Background box
+	\filldraw [line width=1pt, color=aaublue, fill=aaublue!15, rounded corners] (-2,-8)  rectangle (18,3);
+		
+	% First grid
+	\foreach \i in {0, 1, 2} \foreach \j in {0,1,2} \draw (\i,\j) circle(0.1);
+	\foreach \i in {0, 1, 2} \node at (\i,-1) {$\i$};
+	\foreach \j in {0, 1, 2} \node at (-1,\j) {$\j$};
+	\draw (-1.5,-0.5) -- (2.5,-0.5);
+	\draw (-0.5,-1.5) -- (-0.5,2.5);
+	\node at (3,1) {$\rightsquigarrow$};
+	% Kakeya property
+	\foreach \i in {0,1,2} \filldraw (\i,0) circle(0.1);
+	\draw[dashed] (-0.25,0) -- (2.25,0);
+	\node at (0.5,-2) {$v=(1,0)$, $w=(0,0)$};
+        
+	% Second grid
+	\foreach \i in {5, 6, 7} \foreach \j in {0,1,2} \draw (\i,\j) circle(0.1);
+	\foreach \i[evaluate={\k=int(\i -5);}] in {5,6,7} \node at (\i,-1) {$\k$};
+	\foreach \j in {0,1,2} \node at (4,\j) {$\j$};
+	\draw (3.5,-0.5) -- (7.5,-0.5);
+	\draw (4.5,-1.5) -- (4.5,2.5);
+	\node at (8,1) {$\rightsquigarrow$};
+	% Kakeya property
+	\foreach \j in {0,1,2} \filldraw (7,\j) circle(0.1);
+	\draw[dashed] (7,-0.25) -- (7,2.25);
+	\node at (5.5,-2) {$v=(0,1)$, $w=(2,0)$};
+        
+	% Third grid
+	\foreach \i in {10, 11, 12} \foreach \j in {0, 1, 2} \draw (\i,\j) circle(0.1);
+	\foreach \i[evaluate={\k=int(\i -10);}] in {10, 11, 12} \node at (\i,-1) {$\k$};
+	\foreach \j in {0,1,2} \node at (9,\j) {$\j$};
+	\draw (8.5,-0.5) -- (12.5,-0.5);
+	\draw (9.5,-1.5) -- (9.5,2.5);
+	\node at (13,1) {$\rightsquigarrow$};
+	% Kakeya property
+	\foreach \i[evaluate={\j=int(\i -10);}] in {10, 11, 12} \filldraw (\i,\j) circle(0.1);
+	\draw[dashed] (9.75,-0.25) -- (12.25,2.25);
+	\node at (10.5,-2) {$v=(1,1)$, $w=(0,0)$};
+        
+	% Fourth grid
+	\foreach \i in {15, 16, 17} \foreach \j in {0, 1, 2} \draw (\i,\j) circle(0.1);
+	\foreach \i[evaluate={\k=int(\i -15);}] in {15, 16, 17} \node at (\i,-1) {$\k$};
+	\foreach \j in {0,1,2} \node at (14,\j) {$\j$};
+	\draw (13.5,-0.5) -- (17.5,-0.5);
+	\draw (14.5,-1.5) -- (14.5,2.5);
+	% Kakeya property
+	\filldraw (17,1) circle(0.1);
+	\filldraw (16,2) circle(0.1);
+	\filldraw (15,0) circle(0.1);
+	\draw[dashed] (17.25,0.75) -- (15.75,2.25);
+	\draw[dashed] (14.75,0.25) -- (15.25,-0.25);
+	\node at (15.5,-2) {$v=(1,-1)$, $w=(1,2)$};
+ 		
+	% Fifth grid
+	\foreach \i in {7, 8, 9} \foreach \j in {-6, -5, -4} \draw (\i,\j) circle(0.1);
+	\foreach \i[evaluate={\k=int(\i -7);}] in {7, 8, 9} \node at (\i,-7) {$\k$};
+	\foreach \j[evaluate={\k=int(\j +6);}] in {-6, -5, -4} \node at (6,\j) {$\k$};
+	\draw (5.5,-6.5) -- (9.5,-6.5);
+	\draw (6.5,-7.5) -- (6.5,-3.5);
+	\node at (5,-5) {$\rightsquigarrow$};
+	% Kakeya property
+	\foreach \i in {7,8,9} \filldraw (\i,-6) circle(0.1);
+	\foreach \j in {-6,-5,-4} \filldraw (9,\j) circle(0.1);
+	\foreach \i[evaluate={\j=int(\i -13);}] in {7,8,9} \filldraw (\i,\j) circle(0.1);
+	\filldraw (9,-5) circle(0.1);
+	\filldraw (8,-4) circle(0.1);
+	\filldraw (7,-6) circle(0.1);
+\end{tikzpicture}
+}
+\caption{Kakeya set in $\F_3^2$ of the Example~\ref{ex:kakeya-set}}
+\label{fig:kakeya-set}
+\end{figure}

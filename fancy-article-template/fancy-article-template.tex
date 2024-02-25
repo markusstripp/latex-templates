@@ -1,0 +1,38 @@
+\documentclass[numbers=endperiod]{scrartcl}  
+
+\usepackage[english]{babel} 
+
+\input{fancy-article-preamble.tex}
+
+\begin{document}
+
+\title{This is my fancy article}
+\author{Markus Tripp\thanks{Alpen-Adria-Universität Klagenfurt, 9020 Klagenfurt, Austria,~\href{mailto:markus.tripp@aau.at}{\texttt{markus.tripp@aau.at}.}}}	
+\date{\today}
+
+\maketitle
+\myabstract{This is a short summary of the contents of this article.}
+\keywords{}
+
+\section{Preliminaries}
+All sorts of things are explained and introduced here. Although this is an article, one can also put stuff in fancy boxes. A tasty example:
+
+\begin{definition}[Group action]
+	Let $G$ be a group and $X$ a set. A mapping $\alpha:G\times X \to X$ that satisfies
+	\begin{enumerate}[label=(A\arabic*)]
+		\item $\alpha(e,x) = x$,
+		\item $\alpha(g,\alpha(h,x))=\alpha(gh,x)$
+	\end{enumerate}
+	for all $g$, $h \in G$ and $x \in X$ is called a \emph{group action} of $G$ on $X$.
+\end{definition}
+
+\begin{remark}
+	It is very common that one replaces $\alpha$ with a dot. Then the two above axioms read as $e\cdot x = x$ and $g\cdot (h \cdot x) = (gh) \cdot x$.
+\end{remark}
+
+\section{Improvements?}
+Feel free to adapt/polish this template in any way you like. I am happy to discuss ideas and suggestions for general improvement of this template!
+
+\printbibliography
+
+\end{document}

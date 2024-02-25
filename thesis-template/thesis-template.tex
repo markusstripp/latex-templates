@@ -1,0 +1,84 @@
+\documentclass[twoside, withdegree, numbers = noenddot]{bhxmtthesis}
+
+\usepackage[ngerman, english]{babel}
+
+\newcommand{\fline}{\mathcal{L}} % finite line 
+
+\title{This is my thesis}
+\author{Markus Tripp}
+
+\reporttype{Bachelorarbeit}
+\studname{Technische Mathematik}
+\degree{Bachelor of Science}
+
+\involvedpeople{
+	\begin{flushleft}
+		\person{0.45\linewidth}{Betreuerin}{
+    			\hbox{Univ.-Prof.$^\textnormal{in}$ Dr.$^\textnormal{in}$ Alexandra Musterfrau}\\
+    			Institut für Mathematik\\
+    			Alpen-Adria-Universität Klagenfurt
+		}
+	\end{flushleft} %\hfill
+	%\person[\flushright]{0.45\linewidth}{Gutachter}{
+		%Dr. Erich Mustermann\\
+		%Institut für Mathematik\\
+    		%Technische Universität Graz\\
+	%}\\[2em]
+}
+
+\university{
+	\hfill\includegraphics{fig/aau-logo.pdf}\\[1em]
+}
+\universityname{Alpen-Adria-Universität Klagenfurt}
+\fakultaetname{Fakultät für Technische Wissenschaften}
+
+\begin{document}
+\pagenumbering{roman}
+\selectlanguage{ngerman}
+\maketitle
+
+\introchapter{Eidesstattliche Erklärung}
+Ich versichere an Eides statt, dass ich
+\begin{itemize}
+	\item die eingereichte wissenschaftliche Arbeit selbstständig verfasst und keine anderen als die angegebenen Hilfsmittel benutzt habe,
+	\item die während des Arbeitsvorganges von dritter Seite erfahrene Unterstützung, einschließlich signifikanter Betreuungshinweise, vollständig offengelegt habe,
+	\item die Inhalte, die ich aus Werken Dritter oder eigenen Werken wortwörtlich oder sinngemäß übernommen habe, in geeigneter Form gekennzeichnet und den Ursprung der Information durch 	möglichst exakte Quellenangaben (z.B. in Fußnoten)ersichtlich gemacht habe,
+	\item den Einsatz von generativen Modellen (Künstliche Intelligenz wie z.B. ChatGPT, Grammarly Go, Midjourney) vollständig und wahrheitsgetreu inkl. Produktversion ausgewiesen habe,
+	\item die eingereichte wissenschaftliche Arbeit bisher weder im Inland noch im Ausland einer Prüfungsbehörde vorgelegt habe und
+	\item bei der Weitergabe jedes Exemplars (z.B. in ausgedruckter oder digitaler Form) der wissenschaftlichen Arbeit sicherstelle, dass diese mit der eingereichten digitalen Version 		übereinstimmt.
+\end{itemize}
+Ich bin mir bewusst, dass eine tatsachenwidrige Erklärung rechtliche Folgen haben wird.
+
+\vspace{4\baselineskip}
+
+Markus Tripp, e.h. \hfill Klagenfurt, \today
+
+\selectlanguage{english}
+\introchapter{Acknowledgments}
+This is a brief section to express gratitude to people who have contributed to the completion of this thesis.
+
+\begin{center} 
+\emph{Thank you!}
+\end{center}
+
+\introchapter{Abstract}
+This is a short summary of the contents of this thesis.
+
+\vspace{4\baselineskip} {\let\clearpage\relax \introchapter{Zusammenfassung}} % Ensures that no pagebreak happens
+Das ist eine kurze Zusammenfassung des Inhalt dieser Arbeit.
+
+\tableofcontents
+
+\addchap{Introduction}
+\pagenumbering{arabic}
+\input{chapters/introduction}
+
+\chapter{Preliminaries}\label{chap:preliminaries}
+\input{chapters/preliminaries}
+
+\appendix
+\chapter{Implementations}\label{chap:implementations}
+\input{chapters/implementations}
+
+\printbibliography
+\end{document}

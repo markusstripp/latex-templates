@@ -1,0 +1,756 @@
+The first step in investigating factorizations of a multiplicative structure is to identify its atoms. In this chapter, we aim to find criteria for irreducible elements in $\M{n}$, explore their properties, and address questions concerning the existence of a factorization. Although the primary focus will be on the special case of $2 \times 2$ matrices, we will also present some results regarding $n \times n$ matrices.
+
+\section{Specifics of $2\times 2$ matrices}
+First, to develop a bit of intuition, we want to provide an example of what atoms can look like.
+
+\begin{example}\label{ex:2x2-atoms}
+Given the structural similarity to a unit, the elementary matrix 
+\[S_1(p) \coloneqq \begin{pmatrix} p & 0 \\ 0 & 1 \end{pmatrix} \in \M{2}\setminus\mathcal{E}(\M{2})\]
+is an atom for a prime number $p \in \mathbb{P} \coloneqq \mathcal{A}(\NN)$. Assume $S_1(p)  = BC$ for matrices $B$, $C \in \M{2}$. We observe that $pe_1 = Bc_1$ and $e_2 = Bc_2$, and conclude that $c_2$ has to be either $e_1$ or $e_2$ since the columns of $B$ are non-zero due to its non-zero determinant. For simplicity, let $c_2 = e_2$, which implies that $e_2 = Bc_2=Be_2=b_2$. We obtain
+\[ pe_1 = Bc_1 = c_{11}b_1 + c_{21}b_2 = c_{11}b_1 +c_{21}e_2. \]
+We get that $c_{21} = 0$, and, taken into account that $p \in \mathbb{P}$ is an atom in $\NN$, either $b_1 = e_1$ and $c_{11} = p$ or $b_1 = pe_1$ and $c_{11} = 1$. In total, we have that either $B$ or $C$ is a unit.
+\end{example}
+
+\begin{remark*}
+Since according to Proposition~\ref{prop:preservation-irreducibility-fe} multiplying by units and transposing preserves the irreducibility, all factorization-equivalents of $S_1(p)$ are atoms, i.e.,
+\[ \left\{ \begin{pmatrix} 1 & 0 \\ 0 & p \end{pmatrix},\, \begin{pmatrix} p & 0 \\ 0 & 1 \end{pmatrix}, \, \begin{pmatrix} 0 & 1 \\ p & 0 \end{pmatrix}, \, \begin{pmatrix} 0 & p \\ 1 & 0 \end{pmatrix} : p \in \mathbb{P} \right\} \subseteq \mathcal{A}(\M{2}). \]
+\end{remark*}
+
+As zero divisors complicate the multiplicative structure, they have a significant impact on the well-behavior of factorization. The following proposition shows that not only zero divisors in $\M{2}$ but also those matrices with determinant zero are reducible. Note that this also fits within the larger algebraic picture as this matrices with determinant zero are zero divisors in $\mathbb{Z}^{2 \times 2}$.
+
+\begin{proposition}[Determinant of atoms in $\M{2}$]\label{prop:determinant-of-2x2-atoms}
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be an atom. Then it holds that $\det{A} \neq 0$.
+\end{proposition}
+
+\begin{proof}
+We show the assertion by contraposition. Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix with $\det{A} = 0$, i.e., there exists an $\alpha \in \mathbb{Q}_{\geq 0}$ such that $a_2 = \alpha a_1$. We can rewrite the equation as $a_2 = \frac{p}{q} a_1$ for suitable coprime integers $p \in \NN$ and $q \in \mathbb{N}$, and conclude that $q$ divides $a_{i1}$ for $i = 1, \,2$. This means that, for $i=1, \,2$, there exists a suitable $b_{i} \in \NN$ such that $q b_i = a_{i1}$. We obtain that $a_1 = qb$ and $a_2 = p b$ for $b \coloneqq \begin{pmatrix} b_1 & b_2\end{pmatrix}^t \in \NN^2$. Finally, we get 
+\[ A =\begin{pmatrix} b_1 & 0 \\ b_2 & 0 \end{pmatrix} \begin{pmatrix} q & p \\ 0 & 0 \end{pmatrix}, \]
+and observe that both factors are non-units. Hence, $A$ is reducible.
+\end{proof}
+
+\begin{remark*}
+The (factorization-equivalents of the) irreducible matrix of the Example~\ref{ex:2x2-atoms} and the ``standard'' left and right zero-divisors 
+\[
+\begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix},\,\begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix},\,\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} \quad \text{and} \quad \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}
+\]
+are the multiplicative components that construct all matrices with determinant zero. Let $A \in \M{2}$ be a matrix with $\det{A}=0$. With the notations of the proof of Proposition~\ref{prop:determinant-of-2x2-atoms}, we factorize the elements, which are non-zero, into primes, i.e.,
+\begin{alignat*}{2}
+p &= \begin{cases} p_1p_2\cdots p_k &\text{if}\;p\neq 0, \\ p_1=0 &\text{else},  \end{cases} \quad & q &= q_1q_2 \cdots q_l,\\
+b_1 &= \begin{cases} r_1r_2\cdots r_m &\text{if}\;b_1\neq 0, \\ r_1=0 &\text{else}  \end{cases} \quad \text{and} \quad &  b_2 &= \begin{cases} s_1s_2\cdots s_n &\text{if}\;b_2\neq 0, \\ s_1=0 &\text{else}, \end{cases}
+\end{alignat*}
+where $k,l,m, n \in \NN$ denote the respective number of factors, and we obtain
+\begin{align*}
+A &=  \begin{pmatrix} b_1 & 0 \\ b_2 & 0 \end{pmatrix}\begin{pmatrix} q & p \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} b_1 & 0 \\ 0 & b_2 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} q & 0 \\ 0 & p \end{pmatrix} = \\
+&= \prod_{i=1}^m \begin{pmatrix} r_i & 0 \\ 0 & 1 \end{pmatrix} \prod_{i=1}^n \begin{pmatrix} 1 & 0 \\ 0 & s_i \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix}\prod_{i=1}^l \begin{pmatrix} q_i & 0 \\ 0 & 1 \end{pmatrix}\prod_{i=1}^k \begin{pmatrix} 1 & 0 \\ 0 & p_i \end{pmatrix}.
+\end{align*}
+\end{remark*}
+
+Before one can investigate factorizations, one primary initial goal is to determine whether a given element has a factorization at all. The first step of that is done with the previous proposition. Before we are able to fully characterize the factorizable matrices in $\M{2}$, we need a lemma, which implies that a product of non-unit matrices with a non-zero determinant will eventually ``explode''. To clarify further, the following lemma will state that multiplying by a non-unit matrix with a non-zero determinant will increase the sum of entries.
+
+\begin{lemma}\label{lemma:increasing-sum-of-entries}
+Let $A$, $B \in \M{2}\setminus\mathcal{E}(\M{2})$ be matrices with a non-zero determinant. Then it holds that
+\[ \| A \|_1 < \| AB \|_1. \] 
+\end{lemma}
+
+\begin{proof}
+Since $A$ and $B$ have a non-zero determinant, $A$ and $B$ must be of the form 
+\[ P = \begin{pmatrix} p_{11} & 0 \\ 0 & p_{22}\end{pmatrix} \neq I_2,\, Q = \begin{pmatrix} q_{11} & q_{12} \\ 0 & q_{22} \end{pmatrix} \quad \text{or} \quad R = \begin{pmatrix} r_{11} & r_{12} \\ r_{21} & r_{22} \end{pmatrix} \]
+modulo factorization-equivalence, where the specified entries represent positive integers.
+\begin{enumerate}[label=(\alph*)]
+\item Case ``$B$ has the form of $P$'': This means either 
+\[ B=\begin{pmatrix} b_{11} & 0 \\ 0 & b_{22} \end{pmatrix} \quad \text{or} \quad B=\begin{pmatrix} 0 & b_{11} \\ b_{22} & 0 \end{pmatrix} = \begin{pmatrix} b_{11} & 0 \\ 0 & b_{22} \end{pmatrix}  \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\]
+for suitable $b_{11}$, $b_{22} \in \mathbb{N}$, not both equal to $1$. Considering that, as per Proposition~\ref{prop:units}, multiplying a matrix by a unit only rearranges columns or rows, and consequently, does not alter its sum of entries, we obtain
+\[
+\| AB \|_1 = \left\| A\begin{pmatrix} b_{11} & 0 \\ 0 & b_{22} \end{pmatrix} \right\|_1 = b_{11}(a_{11} + a_{21}) + b_{22}(a_{12} + a_{22}) > \| A \|_1.
+\]
+\item Case ``$B$ has the form of $Q$ or $R$'': This means $B$ has a column, where all components are positive. Without loss of generality, we assume that this holds for $b_1$. Furthermore, all columns of $A$ and $B$ are non-zero since their determinants are non-zero. Likewise, we use the notation $\| \cdot \|_1$ to represent the $L^1$-norm of vectors. We compute
+\begin{align*}
+\| Ab_1 \|_1  = \| b_{11}a_1 + b_{21}a_2 \|_1 \geq \|a_1 +a_2 \|_1 = \|A \|_1 \quad \text{and} \quad \| Ab_2 \|_1 = \| b_{12}a_1 + b_{22}a_2 \|_1 \geq 1,
+\end{align*}
+and get $\| AB \|_1 = \| Ab_1 \|_1 + \| Ab_2 \|_1 \geq \| A\|_1 +1 > \| A\|_1$.
+\end{enumerate}
+So in either case, the desired identity $\| A \|_1 < \| AB \|_1$ is satisfied.
+\end{proof}
+
+Finally, we can formulate a main result, which fully characterizes the factorizability in $\M{2}$.
+
+\begin{theorem}[Characterization of factorizability in $\M{2}$]\label{theorem:2x2-factorizablitiy}
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$. Then $A$ is factorizable if and only if $\det{A} \neq 0$. Hence, $({\M{2}}^\bullet,\,\cdot\,,I_2)$ is the largest atomic submonoid of $\M{2}$ with respect to inclusion, where ${\M{2}}^\bullet \coloneqq \{ A \in \M{2}: \det{A} \neq 0 \}$ denotes the set of matrices with a non-zero determinant.
+\end{theorem}
+
+\begin{proof}
+\begin{itemize}
+\item[``$\Rightarrow$'']  Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a factorizable matrix, i.e., $A$ is a product of atoms with a non-zero determinant according to Proposition~\ref{prop:determinant-of-2x2-atoms}. Hence, the determinant of $A$ must be non-zero since the determinant function is multiplicative.
+\item[``$\Leftarrow$''] We proceed by contradiction. Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a non-factorizable matrix with $\det{A} \neq 0$. Since, in particular, $A$ is not irreducible, there exist matrices $B$, $C \in \M{2}$, neither of which is a unit, such that $A=BC$, and either $B$ or $C$ is not factorizable. Applying iteratively the same argument, we obtain that for every $m \in \mathbb{N}$ there exist non-units $A_1^{(m)}$, $A_2^{(m)}$, \dots, $A_m^{(m)} \in \M{2}$ dependent on $m$ such that 
+\[A = A_1^{(m)} A_2^{(m)}\cdots A_m^{(m)}.\]
+We fix a  $m \in \mathbb{N}$. Since arbitrary products of factors of $A$ also have a non-zero determinant, thanks to the multiplicativity of the determinant function, we can apply Lemma~\ref{lemma:increasing-sum-of-entries}, and by induction, we obtain that 
+\[ 3 \leq \| A_1^{(m)} \|_1 < \| A_1^{(m)}A_2^{(m)} \|_1 < \cdots < \| (A_1^{(m)}A_2^{(m)}\cdots A_{m-1}^{(m)})A_{m}^{(m)} \|_1 = \| A \|_1. \]
+Finally, the inequality chain above yields that $\| A \|_1 \geq m + 2$, which is a contradiction since $m$ can be chosen arbitrarily large.
+\end{itemize}
+\end{proof}
+
+In particular, the theorem shows that $\M{2}$ is not atomic. Note that non-zero determinants are equivalent to the condition of cancellability, i.e., for all $A \in {\M{2}}^\bullet$ it holds that
+\[  AB = AC \;\text{or}\; BA = CA \quad \text{implies} \quad B=C. \]
+This condition results in a more well-behaved multiplicative structure, making it atomic. Moreover, the proof of the Theorem~\ref{theorem:2x2-factorizablitiy} allows us to formulate some simple consequences regarding the maximum factorization length of a given matrix.
+
+\begin{corollary}\label{cor:factorization-bound}
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ with $\det{A} \neq 0$. Then length set of $A$ is bounded by $\| A \|_1 -2$, i.e., 
+\[ \max L(A) \leq \| A \|_1 -2.\]
+In particular, $A$ is an atom if $\| A \|_1 = 3$.
+\end{corollary}
+
+\begin{proof}
+Applying Lemma~\ref{lemma:increasing-sum-of-entries} in the proof of the previous theorem, we have seen that it holds that $\|A \|_1 \geq m +2$ for any product of $m \in \mathbb{N}$ non-unit matrices with a non-zero determinant that yields $A$. Solving for $m$ completes the proof.
+\end{proof}
+
+\begin{remark*}
+\mbox{}\vspace{-2\topskip}
+\begin{enumerate}[label=(\alph*)]
+\item The corollary proves, for $m=1$, the irreducibility of the matrix $R_{12}(m) \coloneqq \begin{pmatrix} 1 & m \\ 0 & 1 \end{pmatrix}$ modulo factorization-equivalence since its sum of entries equals $3$.
+\item The bound in the Corollary~\ref{cor:factorization-bound} is sharp. By induction, it is easy to see that, for an arbitrary $m \in \mathbb{N}$, 
+\[ R_{12}(1)^m = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}^m=\begin{pmatrix} 1 & m \\ 0 & 1 \end{pmatrix}=R_{12}(m)\]
+holds. Hence, on the one hand, this means that $m \in L(R_{12}(m))$, and, in particular, that $\max L(R_{12}(m)) \geq m$. On the other hand, applying the corollary above, we get that 
+\[ \max L(R_{12}(m)) \leq \| R_{12}(m) \|_1 -2 = m.\]
+\end{enumerate}
+\end{remark*}
+
+Having completely answered the question of factorizability, we now aim to establish additional criteria for atoms. We will see that, if we require one entry to be zero, we are able to entirely identify the irreducible matrices and specify a factorization for a given matrix.
+
+\begin{proposition}[Characterization of irreducible matrices with a zero-entry in $\M{2}$]\label{prop:2x2-upper-triangular}
+The set of irreducible matrices with a zero-entry consists of the factorization-equivalents of
+\[ R_{12}(1) = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \quad \text{and} \quad S_1(p) = \begin{pmatrix} p & 0 \\ 0 & 1 \end{pmatrix} \]
+for an arbitrary $p \in \mathbb{P}$. Furthermore, every matrix with a zero-entry in ${\M{2}}^\bullet\setminus\mathcal{E}(\M{2})$ can be written as a product of such atoms.
+\end{proposition}
+
+\begin{proof}
+We have already seen that, for $p \in \mathbb{P}$, the elementary matrices $R_{12}(1)$, $S_1(p)$ and according to Proposition~\ref{prop:preservation-irreducibility-fe} their factorization-equivalents are atoms of $\M{2}$. We argue that there are no other irreducible matrices with a zero-entry. Let $A \in {\M{2}}^\bullet\setminus\mathcal{E}(\M{2})$ contain a zero-entry. Then there exist units $U_1$, $U_2 \in \mathcal{E}(\M{2})$ such that $B \coloneqq U_1AU_2$ is an upper triangular matrix, as multiplying by units can permute both columns and rows. Since the determinant of $B$ is non-zero, i.e., $b_{11} b_{22} \neq 0$, we can factorize 
+\[ b_{11} = p_1p_2\cdots p_k \quad \text{and} \quad b_{22}=q_1q_2\cdots q_l \]
+into primes with $k,l \in \NN$ denoting the respective number of prime factors.  Recall that for $m \in \NN$ it holds that $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}^m = \begin{pmatrix} 1 & m \\ 0 & 1 \end{pmatrix}$. Setting $m \coloneqq b_{12}$, we obtain
+\begin{align*}
+B &= \begin{pmatrix} b_{11} & b_{12} \\ 0 & b_{22} \end{pmatrix} = \begin{pmatrix} 1 & b_{12} \\ 0 & b_{22} \end{pmatrix}\begin{pmatrix} b_{11} & 0 \\ 0 & 1 \end{pmatrix} = \\ &=\begin{pmatrix} 1 & 0 \\ 0 & b_{22} \end{pmatrix}\begin{pmatrix} 1 & b_{12} \\ 0 & 1 \end{pmatrix}\begin{pmatrix} b_{11} & 0 \\ 0 & 1 \end{pmatrix} = \prod_{i=1}^l \begin{pmatrix} 1 & 0 \\ 0 & q_i \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}^m \prod_{i=1}^k  \begin{pmatrix} p_i & 0 \\ 0 & 1 \end{pmatrix}.
+\end{align*}
+Multiplying by the inverses of $U_1$ and $U_2$, we get a factorization of $A$, which only consists of factorization-equivalents of $R_{12}(1)$ and $S_1(p)$ for $p \in \mathbb{P}$, and we are done.
+\end{proof}
+
+\section{Results on generalization to $n\times n$ matrices}
+
+Matrices with a zero-entry in $\M{2}$ are precisely the FE-triangular matrices. After investigating the special case of $2 \times 2$ matrices, we now aim to generalize the result regarding upper triangular matrices to the $n \times n$ situation. This has been extensively studied in~\cite{Baeth2020}. We are able to transfer a main result here.
+
+\begin{theorem}[cf.~{\cite[Theorem 2.1]{Baeth2020}}]\label{theorem:nxn-upper-triangular}
+The set of irreducible FE-triangular matrices consists of the factorization-equivalents of
+\[ R_{ij}(m) \coloneqq I_n + mE_{ij}\;\text{with}\;1\leq i < j\leq n\quad\text{and}\quad S_i(p) \coloneqq I_n + (p-1)E_{ii}\;\text{with}\;1\leq i \leq n \]
+for $m=1$ and $p \in \mathbb{P}$, where, for every pair $1 \leq i,j \leq n$, $E_{ij}$ denotes the matrix whose only non-zero entry is $e_{ij} = 1$.  Furthermore, every non-unit FE-triangular matrix with a non-zero determinant can be written as a product of atoms of the above form.
+\end{theorem}
+
+\begin{proof}
+First, we show that $R_{i_0,j_0}(1)$ is irreducible for $1 \leq i_0 < j_0 \leq n$. Assume $R_{i_0,j_0}(1) =BC$ for matrices $B$, $C \in \M{n}$. Hence, for $j \in \{ 1, \, 2, \, \dots, \, n \} \setminus \{ j_0 \}$, it holds that $e_j=Bc_j $. With similar reasoning as in the proof of Proposition~\ref{prop:units}, we can conclude that $c_j = e_{\pi(j)}$ for $j \neq j_0$ and a suitable permutation $\pi \in S_n$. Consequently, this also means that $e_j = Bc_j = Be_{\pi(j)} = b_{\pi(j)}$ for $j \neq j_0$. Then, the $j_0$-th column of $R_{i_0,j_0}(1) =BC$ satisfies
+\[ e_{i_0} + e_{j_0} = Bc_{j_0} = \sum_{j=1}^n c_{j,j_0}b_{j} = \sum_{j=1}^n c_{\pi(j),j_0}b_{\pi(j)} = c_{\pi(j_0),j_0}b_{\pi(j_0)}  + \sum_{\substack{j=1 \\ j \neq j_0}}^n c_{\pi(j),j_0}e_{j}. \]
+Finally, we can conclude that either 
+\[ b_{\pi(j_0)} = e_{j_0}\;\text{and}\;c_{j_0} =e_{\pi(i_0)} + e_{\pi(j_0)}\quad\text{or}\quad b_{\pi(j_0)} = e_{i_0} + e_{j_0} \;\text{and}\;c_{j_0} = e_{\pi(j_0)}.\]
+In other words, either $B$ or $C$ is a unit.
+
+Secondly, we prove that, for $1 \leq i_0 \leq n$ and $p \in \mathbb{P}$, the matrix $S_{i_0}(p)$ is an atom. Assume $S_{i_0}(p) =BC$ for matrices $B$, $C \in \M{n}$. Analogously, it holds that $c_i = e_{\pi(i)}$ as well as $b_{\pi(i)} = e_i$ for $i \neq i_0$ and a suitable permutation $\pi \in S_n$. The $i_0$-th column of $S_{i_0}(p) =BC$ fulfills
+\[ pe_{i_0} = Bc_{i_0} = \sum_{i=1}^n c_{i,i_0}b_{i} = \sum_{i=1}^n c_{\pi(i),i_0}b_{\pi(i)} = c_{\pi(i_0),i_0}b_{\pi(i_0)}  + \sum_{\substack{i=1 \\ i \neq i_0}}^n c_{\pi(i),i_0}e_{i}. \]
+As $p \in \mathbb{P}$ is irreducible in $\NN$, we can conclude that either
+\[ b_{\pi(i_0)} = e_{i_0} \; \text{and} \; c_{i_0} = pe_{\pi(i_0)} \quad \text{or} \quad b_{\pi(i_0)} = pe_{i_0} \; \text{and} \; c_{i_0} = e_{\pi(i_0)}.\]
+Therefore, either $B$ or $C$ is a unit.
+
+Lastly, by showing that each non-unit FE-triangular matrix with a non-zero determinant possesses a factorization in atoms of the above form, we argue that there are no other irreducible matrices with the desired structure. Let $A \in \M{n}\setminus\mathcal{E}(\M{n})$ be FE-triangular with $\det{A} \neq 0$. Then there exist units $U_1$, $U_2 \in \mathcal{E}(\M{n})$ such that $B \coloneqq U_1AU_2$ is an upper triangular matrix (for triangular matrices transposition can be performed by permutation), i.e.,
+\[ B = \begin{pmatrix} b_{11} & b_{12} & \ldots & b_{1,n-1} & b_{1n} \\ 0 & b_{22} & \ldots &  b_{2,n-1} & b_{2n} \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0  & \ldots & b_{n-1,n-1} & b_{n-1,n} \\ 0 & 0 & \ldots & 0 &  b_{nn} \end{pmatrix}. \]
+From that, by applying the standard matrix arithmetics, it is straightforward to observe that $B$ can be decomposed in 
+\[ B = \begin{pmatrix} 1 & 0 & \ldots & 0 & b_{1n} \\ 0 & 1 & \ldots &  0 & b_{2n} \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0  & \ldots & 1 & b_{n-1,n} \\ 0 & 0 & \ldots & 0 &  b_{nn} \end{pmatrix} 
+\begin{pmatrix} 1 & 0 & \ldots & b_{1,n-1} & 0 \\ 0 & 0 & \ldots &  b_{2,n-1} & 0 \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0  & \ldots & b_{n-1,n-1} & 0 \\ 0 & 0 & \ldots & 0 &  1 \end{pmatrix} \cdots
+\begin{pmatrix} b_{11} & 0 & \ldots & 0 & 0 \\ 0 & 1 & \ldots &  0 & 0 \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0  & \ldots & 1 & 0 \\ 0 & 0 & \ldots & 0 &  1 \end{pmatrix}. \]
+Each factor is equal to the identity matrix, where one column is exchanged by the corresponding column of $B$. Due to this specific structure, we can factor $B$ as
+\begin{align*}
+B &= \prod_{j=0}^{n-1} \begin{pNiceArray}{c:c:c:c:c:c:c:c} e_1 & e_2 & \ldots & e_{n-j-1} & b_{n-j} & e_{n-j+1} & \ldots & e_n \end{pNiceArray} = \\
+&= \prod_{j=0}^{n-1} \bigg( S_{n-j}(b_{n-j,n-j}) \prod_{i=1}^{n-j-1} R_{n-j-i,n-j}(b_{n-j-i,n-j}) \biggr). 
+\end{align*}
+As all diagonal elements of $B$ are positive due to the non-zero determinant, each matrix in this product can be further factored as 
+\[ R_{ij}(m) = R_{ij}(1)^m \quad \text{and} \quad S_i(\tilde{m}) = S_i(p_1)S_i(p_2)\cdots S_i(p_k) \]
+for arbitrary $m$, $\tilde{m} \in \NN$ with $\tilde{m} > 0 $ and $p_1$, $p_2$, \dots, $p_k \in \mathbb{P}$ such that $\tilde{m} = p_1p_2\cdots p_k$. Multiplying by the inverses of $U_1$ and $U_2$, we get a factorization of $A$, which only consists of atoms of the above form. This completes the proof.
+\end{proof}
+
+\begin{remark*}
+The condition $1\leq i < j\leq n$ in Theorem~\ref{theorem:nxn-upper-triangular} enforces that $R_{ij}$ is an upper triangular matrix. Since the factorization-equivalents are atoms as well, we can conclude that $R_{ij}$ is an atom for every pair $i,j \in \{ 1, \, 2, \, \dots, \, n\}$ with $i \neq j$.
+\end{remark*}
+
+Equipped with Theorem~\ref{theorem:nxn-upper-triangular} and the meaning of multiplying by one of its listed irreducible matrices, we can provide two necessary conditions for less sparse atoms.
+
+\begin{theorem}[$S$-conditions]\label{theorem:s-conditions}
+Let $A \in \M{n}\setminus \mathcal{E}(\M{n})$ be non-FE-triangular. If $A$ is an atom, it holds that
+\begin{enumerate}[label=(S\arabic*)]
+\item\label{item:gcd-condition} the components of its columns and rows are coprime, i.e., for all $1\leq i,j \leq n$, it holds that $\gcd{(a_{i1}, \, a_{i2}, \, \dots, \, a_{in})}=1$ and $\gcd{(a_{1j},\,a_{2j},\, \dots,\,a_{nj})}=1$.
+\item\label{item:non-comparibility-condition} two columns or rows cannot be compared componentwise, i.e., there exist no $1 \leq i_0 < i_1 \leq n$ such that $a_{i_0,\bullet} \preceq a_{i_1,\bullet}$ or $a_{i_1,\bullet} \preceq a_{i_0,\bullet}$, as well as there exist no $1 \leq j_0 <j_1 \leq n,$ such that $a_{j_0} \preceq a_{j_1}$ or $a_{j_1} \preceq a_{j_0}$, where the ``$\preceq$'' is to be understood as a componentwise ``less than or equal to''.
+\end{enumerate}
+Furthermore, we call~\ref{item:gcd-condition} and~\ref{item:non-comparibility-condition} the $S$-conditions.
+\end{theorem}
+
+\begin{proof}
+We show both assertions by contraposition and only prove the statement regarding columns since the one about rows can be achieved by transposition.
+\begin{enumerate}[label=(\alph*)]
+\item Let us assume that there exists a $1 \leq j_0 \leq n$ such that $\gcd{(a_{1,j_0},\,a_{2,j_0},\, \dots, \, a_{n,j_0})}=d>1$. We take an arbitrary prime divisor $p \in \mathbb{P}$ of $d$ and, given the divisibility property, conclude that there exists $b \in \NN^n$ such that $pb = a_{j_0}$. Finally, we obtain that
+\[ A = \begin{pNiceArray}{c:c:c:c:c:c:c} a_1 & \ldots &  a_{j_0-1} & b & a_{j_0+1} & \ldots & a_n \end{pNiceArray}S_{j_0}(p). \]
+By assumption, $A$ is distinct from the factorization-equivalents of $S_{j_0}(p)$. Hence, also the left factor of $A$ cannot be a unit, which means that $A$ is reducible.
+\item Without loss of generality, we assume that there exist columns $1 \leq j_0 < j_1 \leq n$ such that $a_{j_0} \preceq a_{j_1}$. We can now write $A$ as the product
+\[ A = \begin{pNiceArray}{c:c:c:c:c:c:c:c:c:c:c} a_1 & \ldots & a_{j_0-1} & a_{j_0} & a_{j_0+1} & \ldots & a_{j_1-1} & a_{j_1}-a_{j_0} & a_{j_1+1} & \ldots & a_n \end{pNiceArray} R_{j_0,j_1}(1). \]
+Again, both factors of $A$ are no units, which means $A$ is reducible.
+\end{enumerate}
+\end{proof}
+
+\begin{remark*} Occasionally, we refer to the $S$-conditions in either a rowwise or columnwise context, focusing exclusively on the statements within the $S$-conditions regarding the rows or columns.
+\end{remark*}
+
+\begin{notation*} A matrix $A \in \M{n}$ is called to be in (\emph{rowwise}/\emph{columnwise}) \emph{$S$-form} if it fulfills the (rowwise/columnwise) $S$-conditions.
+\end{notation*}
+
+Lastly, we want to present a result on the non-factorizability. Since in the special case of $n=2$, precisely the matrices with determinant zero are not factorizable, in particular, $2\times 2$ zero divisors do not have a multiplicative representation as a product of atoms. In the following, we are able to show that this non-factorizability of zero divisors holds in the general situation as well.
+
+\begin{proposition}[Non-factorizability of zero divisors in $\M{n}$]
+Let $A \in Z(\M{n})$. Then there exists no factorization of $A$.
+\end{proposition}
+
+\begin{proof}
+We show that zero divisors are reducible. Then, with Theorem~\ref{theorem:non-factorizability-of-zero-divisor}, the statement follows. Let $A \in \M{n}$ be a left zero divisor, i.e., there exists a $1 \leq j_0 \leq n$ such that $a_{j_0} = 0$. It holds that
+\[ A = \begin{pNiceArray}{c:c:c:c:c:c:c} a_1 & \ldots & a_{j_0-1} & {\begin{matrix} 1 \\ \vdots \\ 1 \end{matrix}} & a_{j_0+1} & \ldots & a_n \end{pNiceArray}\begin{pNiceArray}{c:c:c:c:c:c:c} e_1 & \ldots & e_{j_0-1} & 0 & e_{j_0+1} & \ldots & e_n \end{pNiceArray}.\]
+Both factors are non-units by Proposition~\ref{prop:units}, so $A$ is reducible. Using the transpose, it follows that also right zero divisors are reducible.
+\end{proof}
+
+\section{Non-FE-triangular atoms in $\M{2}$}\label{sec:non-sparse-atom}
+
+Since we are already familiar with what atoms in $\M{2}$ with one zero-entry, or equivalently, atoms that are FE-triangular, look like, we now seek to better understand the structure of atoms with no zero-entries. Theorem~\ref{theorem:s-conditions} has demonstrated that the starting point of finding atoms with no zero-entries are the matrices, which satisfy the $S$-conditions. These matrices have a very specific structure, namely on the one hand the entries of their columns and rows are relatively prime, and on the other hand the size of their entries is constrained.
+
+Without loss of generality, by the usage of factorization-equivalency, for a given matrix $A \in \M{2}$ in $S$-form, we impose that $a_{11}$ is the largest entry and that $a_{21} \geq a_{12}$. In particular, this means that the two largest entries lie on the main diagonal. Figure~\ref{fig:s-form} illustrates this relation between the entries.
+
+\begin{figure}[htbp]
+\[ A \coloneqq \begin{pmatrix} \colorbox{aaugray}{$a_{11}$} & > & a_{12} \\ > & & < \\ a_{21} & < & a_{22} \end{pmatrix} \quad \text{with} \quad \| A\|_0 = \colorbox{aaugray}{$a_{12} \leq a_{21}$} < a_{22} \leq a_{11} = \| A \|_{\infty} \]
+\caption{Structure of $2 \times 2$ matrices in $S$-form}\label{fig:s-form}
+\end{figure}
+
+As a preliminary step, we show that a non-unit in (rowwise/columnwise) $S$-form is a regular matrix, thus factorizable, and has no zero-entries. Subsequently, we analyze the structure of its factors.
+
+\enlargethispage{1\baselineskip}
+\begin{lemma}\label{lemma:s-form-non-zero}
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix satisfying rowwise (columnwise) $S$-conditions. Then its determinant and entries are non-zero.
+\end{lemma}
+
+\begin{proof}
+We show the assertions by contradiction. Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be in rowwise $S$-form with $\det{A} = 0$, i.e., there exists a $\alpha \in \mathbb{Q}_{\geq 0}$ such that $a_{2,\bullet} = \alpha a_{1,\bullet}$. This means that, depending on $\alpha$, either $a_{1,\bullet} \preceq a_{2,\bullet}$ or $a_{2,\bullet} \preceq a_{1,\bullet}$, which is a contradiction to $A$ fulfilling the rowwise $S$-conditions.
+
+Secondly, let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ both satisfy the rowwise $S$-conditions and have a zero-entry. For simplicity, we say $a_{11} = 0$. The $\gcd$ condition immediately implies that $a_{12} = 1$. Due to the non-comparability condition and $0 = a_{11} \leq a_{21}$, it needs to hold that $1= a_{12} > a_{22}$. We conclude that $a_{22} = 0$, and, by the $\gcd$ condition, also that $a_{21} = 1$. Finally, we obtain $A = \begin{pNiceArray}{c:c} e_2 &  e_1 \end{pNiceArray}$. Hence, $A$ is a unit.
+\end{proof}
+
+Due to the row-column rule of the matrix multiplication, the $S$-form of a matrix, in a sense, is propagated to its factors.
+
+\begin{theorem}\label{theorem:s-form-factors-non-zero}
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix in $S$-form. For $B$, $C \in \M{2}\setminus\mathcal{E}(\M{2})$ with $A=BC$, it holds that
+\begin{enumerate}[label=(\alph*)]
+\item $B$ fulfills the $S$-conditions rowwise, while $C$ does so columnwise.
+\item $B$ and $C$ have no zero-entries. In particular, this means that $A$ is irreducible in $(\M{2},\, \cdot\,)$ if and only if $A$ is irreducible\footnote{We call a matrix $A \in \mathbb{N}^{n \times n}$ irreducible in $(\mathbb{N}^{n \times n},\,\cdot\,)$ if there exists no matrices $B$, $C \in \mathbb{N}^{n \times n}$ such that $A=BC$.} in $(\mathbb{N}^{2 \times 2},\,\cdot\,)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+\item Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ and $B$, $C \in \M{2}\setminus\mathcal{E}(\M{2})$ such that $A = BC$. Using contraposition, we assume that $B$ does not satisfy the $S$-conditions rowwise. First, we consider the case that the $\gcd$ condition is not fulfilled. Without loss of generality, this means that there exists a $d >1$ and, for $j=1, \, 2$, $\tilde{b}_{1j} \in \NN$ such that $d \tilde{b}_{1j} = b_{1j}$. For $j=1, \,2$, we obtain 
+\[ a_{1j} = b_{11}c_{1j} + b_{12}c_{2j} = d(\tilde{b}_{11}c_{1j} + \tilde{b}_{12}c_{2j}) \]
+Thus, also the first row of $A$ has the non-trivial divisor $d>1$, which means that $A$ does not satisfy the $S$-conditions. On the other hand, let us assume that the non-comparability condition is not met. For simplicity, we assume that $b_{1, \bullet} \preceq b_{2, \bullet}$. Put differently, this means that $b_{1j} \leq b_{2j}$ for $j=1,\,2$. From that, we obtain
+\[ a_{1j} = b_{11}c_{1j} + b_{12}c_{2j} \leq b_{21}c_{1j} + b_{22}c_{2j} = a_{2j}, \]
+and, therefore, that $a_{1,\bullet} \preceq a_{2,\bullet}$. So in either case $A$ cannot be in $S$-form. The assertion about the columnwise $S$-form of $C$ can be shown analogously.
+\item The statement follows with Lemma~\ref{lemma:s-form-non-zero}.
+\end{enumerate}
+\end{proof}
+
+These two results concerning the $S$-form ultimately enable us to provide an initial, albeit limited, sufficient condition for atoms in $\M{2}$—a criterion based on the minimum entry.
+
+\begin{corollary}[Minimum-entry-based criterion for atoms]\label{cor:minimum-entry-based-criterion}
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix in $S$-form. If $\| A\|_0 \in  \{ 1,\,2,\,3 \}$, then $A$ is an atom.
+\end{corollary}
+
+\begin{proof}
+We proceed by contraposition. Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix in $S$-form. Assume $A$ is reducible, i.e., $A =BC$ for non-units $B$, $C \in \M{2}\setminus \mathcal{E}(\M{2})$. According to Theorem~\ref{theorem:s-form-factors-non-zero}, both factors $B$ and $C$ have no zero-entries and satisfy the $S$-conditions in a rowwise or columnwise manner, respectively. Due to the non-comparability condition, each row of $B$ and each column of $C$ has to contain at least one entry greater than $1$. Since the matrix multiplication is defined row-columnwise, each entry of $A$ is at least $4$. Hence, we get that $\| A\|_0 \geq 4$.
+\end{proof}
+
+\begin{remark*}
+There exist matrices with a minimum entry that is at least $4$, which satisfy the $S$-conditions, and are reducible. For example:
+\[ \begin{pmatrix} 5 & 4 \\ 4 & 5 \end{pmatrix} =  \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix} \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}. \]
+\end{remark*}
+
+Corollary~\ref{cor:minimum-entry-based-criterion} has shown that matrices in $S$-form with a sufficiently small minimum entry are atoms. So, the question arises whether the minimum entry of atoms is bounded, or if there exist irreducible matrices with arbitrarily large minimum entries.
+
+\begin{proposition}[A kind of Euclid's theorem]\label{prop:euclid}
+There are infinitely many atoms in $(\M{2}, \,\cdot\,)$. 	Furthermore, it holds that, for all $C > 0$, there exists an irreducible matrix $A \in \M{2}$ such that
+\[ \| A \|_1 > \| A \|_{\infty} > \| A \|_0 \geq C. \]
+\end{proposition}
+
+Let us recall that
+\[ S_1(p) = \begin{pmatrix} p & 0 \\ 0 & 1 \end{pmatrix} \]
+is an atom for every $p \in \mathbb{P}$, according to Example~\ref{ex:2x2-atoms}. Hence, we are already aware that there are infinitely many atoms with arbitrarily large $\| \cdot \|_{1}$- and $\| \cdot \|_{\infty}$-norm. What remains to be shown is that there also exist irreducible matrices with minimum entries that can be arbitrarily large.
+
+\begin{proof}
+For relatively prime $p$, $q \in \mathbb{N}$ with $p > q^2$, we set
+\[ A_{p,q} \coloneqq \begin{pmatrix} p & q \\ q & p \end{pmatrix}. \]
+Then $A_{p,q}$ is in $S$-form. We show that $A_{p,q}$ is irreducible. Choosing suitable large enough $p$, $q \in \mathbb{P}$ provides the result. Note that we use the notation $\|\cdot\|_1$ and $\|\cdot\|_2$ to represent the $L^1$- and $L^2$-norm of vectors, respectively. Assume that there exist $B$, $C \in \mathbb{N}^{2\times 2}$ such that $A_{p,q} = BC$. In particular, this means that $a_{12} = q = (b_{1,\bullet})^t c_2$, and, considering $c_2 \succeq \begin{pmatrix} 1 & 1\end{pmatrix}^t$, consequently that $\| b_{1,\bullet} \|_1 \leq q$. Using the Cauchy-Schwarz inequality and the well-known identity $\| \cdot \|_2 \leq \| \cdot \|_1$, we further estimate 
+\begin{align*}
+p &= (b_{1,\bullet})^t c_1 \leq  \| b_{1,\bullet} \|_2 \| c_1 \|_2 \leq \| b_{1,\bullet} \|_1 \| c_1 \|_1 \leq q \| c_1 \|_1
+\end{align*}
+and obtain $\| c_1 \|_1 \geq \frac{p}{q} > q$. Finally, the inequality chain
+\[ q = (b_{2,\bullet})^t c_1 \geq c_{11} + c_{21} = \| c_1 \|_1 > q \]
+leads to a contradiction.
+\end{proof}
+
+\begin{remark*}
+\mbox{}\vspace{-2\topskip}
+\begin{enumerate}[label=(\alph*)]
+\item The proof shows that 
+\[ A_{p,q} \coloneqq \begin{pmatrix}  p & q \\ q & p \end{pmatrix} \]
+is irreducible if $p$, $q \in \mathbb{N}$ is chosen such that $\gcd(p, \, q) = 1$ and $p > q^2$.
+\item The estimations given here are doing the trick, though they are quite rough at this stage. Using some more theory, they will be improved at a later point.
+\end{enumerate}
+\end{remark*}
+
+\subsection{Determinant-based criteria}
+This subsection is joint work with Johannes Schmucker, who is researching a closely related problem involving factorization in $\mathbb{N}^{2\times 2}$; the ideas have been greatly influenced by him.
+
+The reasons why the determinant could be a useful tool for determining irreducibility are twofold. Firstly, due to its multiplicative nature, we can reduce the ``rather hard'' problem of factorization in $\M{2}$ to factorization in $\NN$ and find the determinant of potential factors. From this, we hope to be able to draw conclusions on the factorization behavior in $\M{2}$. Secondly, we expect matrices in $S$-form, where the magnitude of the entries on the main diagonal significantly differs from the magnitude of the off-diagonal entries, to be irreducible, since this cannot be realized by multiplication in $\mathbb{N}^{2 \times 2}$. The proof of Proposition~\ref{prop:euclid} illustrates that circumstance. This difference between the magnitudes of the diagonal and off-diagonal entries can be perfectly measured by the determinant function. Therefore, we seek to bound the determinant of reducible matrices.
+
+\begin{proposition}[Determinant of matrices in $S$-form]\label{prop:det-s-form}
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix in $S$-form. Then it holds that
+\[ \left\lvert \det{A}\right\rvert \begin{cases} = 3 \quad \text{if}\;A \in \left\{ \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}, \begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix} \right\}, \\ \geq 5 \quad \text{else}. \end{cases} \]
+\end{proposition}
+
+\begin{proof}
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix, which fulfills the $S$-conditions. As illustrated in Figure~\ref{fig:s-form}, we impose $\|A\|_{\infty} = a_{11}$ and $\| A \|_0 = a_{12}$. This transformation remains invariant with respect to the absolute value of its determinant. If 
+\[ A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix} \]
+holds, the statement is trivially shown. Hence, we suppose that $A$ has a different form, and recall that $a_{21} < a_{22}$ needs to hold. As a first case, we consider that $a_{21} = 1$ and $a_{22} \geq 2$. Since $a_{11}$ represents the greatest entry and $A$ is different from the matrix above, we can conclude that $a_{11} \geq 3$. Finally, we obtain that
+\[ \det{A} \geq 3\cdot 2 - 1 \cdot 1 = 5. \]
+As a second case, we assume that $a_{21} \geq 2$ and $a_{22} \geq 3$. Using the fact that $\|A\|_{\infty} = a_{11} \geq a_{22}$ and $\|A\|_{0} = a_{12} \leq a_{21}$, we estimate
+\[
+\det{A} = a_{11}a_{22} - a_{12}a_{21} \geq a_{22}^2 - a_{21}^2 = (a_{22} + a_{21})(a_{22} - a_{21}) \geq 5 \cdot 1=5.
+\]
+\end{proof}
+
+Proposition~\ref{prop:det-s-form} now enables us to state a straightforward consequence concerning the irreducibility of matrices with an (almost) prime determinant.
+
+\begin{corollary}[Irreducibility of matrices with an (almost) prime determinant]\label{cor:prime-det}
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix in $S$-form. If 
+\[ \left \lvert \det{A} \right \rvert \in \{ 1,\,2,\,4 \} \cdot \mathbb{P},\]
+then $A$ is an atom.
+\end{corollary}
+
+\begin{proof}
+We proceed by contradiction. Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a reducible matrix in $S$-form with $ \left \lvert \det{A} \right \rvert  \in \{ 1,\,2,\,4 \} \cdot \mathbb{P}$. This implies that, according to Theorem~\ref{theorem:2x2-factorizablitiy}, there exist a $m > 1$ and atoms $A_1$, $A_2$, \dots, $A_m \in \mathcal{A}(\M{2})$ such that $A = A_1A_2\cdots A_m$. We can conclude that 
+\[  \left \lvert \det{A_1} \right \rvert  \in \{ 1,\,2,\,4 \} \quad \text{or} \quad  \left \lvert \det{A_m} \right \rvert  \in \{ 1,\,2,\,4 \}. \]
+According to Theorem~\ref{theorem:s-form-factors-non-zero}, both $A_1$ and $A_m$ have no zero entries. Hence, by Theorem~\ref{theorem:s-conditions}, they satisfy the $S$-conditions. The previous proposition now states that matrices in $S$-form cannot have these determinants, so this cannot happen.
+\end{proof}
+
+\begin{example}
+We consider the matrix 
+\[ A \coloneqq \begin{pmatrix} 87 & 23 \\ 43 & 53 \end{pmatrix}, \]
+which fulfills the $S$-conditions. Since $ \left \lvert \det{A} \right \rvert = 3622 = 2\cdot 1811 \in 2\cdot\mathbb{P}$, it is an atom.
+\end{example}
+
+\begin{remark*}
+Analogously to the proof of Corollary~\ref{cor:prime-det}, the criterion for irreducibility based on the determinant can be slightly improved. It can be shown that a non-unit matrix $A \in \M{2}$, which satisfies the $S$-conditions, is also irreducible when  $\left \lvert \det{A} \right \rvert$  equals either $16$ or $32$.
+\end{remark*}
+
+As a next step, we seek to upper bound the determinant of reducible matrices based on the greatest entries. This idea is rooted in the observation that, for $m >1$, 
+\[ \begin{pmatrix} m & 1 \\ 1 & m \end{pmatrix}^2 = \begin{pmatrix} m^2+1 & 2m \\ 2m & m^2+1 \end{pmatrix}  \]
+is reducible, in $S$-form, and the factors have the largest determinant among the matrices in $\NN^{2\times 2}$ with entries less than or equal to $m$.
+
+\begin{theorem}\label{theorem:det-bound}
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix, which satisfies the $S$-conditions. Further, let $m_1$ and $m_2$ denote the greatest entries of $A$. 
+\[  \left \lvert \det{A} \right \rvert  > (\sqrt{(m_1-1)(m_2-1)}-1)^2 \]
+holds, then $A$ is an atom.
+\end{theorem}
+
+\begin{proof} 
+See~\cite[Theorem 3.3 and Remark]{Schmucker2023} together with Theorem~\ref{theorem:s-form-factors-non-zero}.
+\end{proof}
+
+\begin{remark*}
+\mbox{}\vspace{-2\topskip}
+\begin{enumerate}[label=(\alph*)]
+\item Theorem~\ref{theorem:det-bound} bounds the determinant of reducible matrices based on its greatest entries, i.e., with the notations above, a reducible matrix $A$ in $S$-form satisfies 
+\[  \left \lvert \det{A} \right \rvert \leq (\sqrt{(m_1-1)(m_2-1)}-1)^2 . \]
+\item If $m_1 = m_2$ or if you loosen the bound by considering only the greatest entry, denoted as $m_1$, the expression on the right simplifies to $(m_1-2)^2$.
+\item\label{item:implication-cor} Further, Theorem~\ref{theorem:det-bound} implies Corollary~\ref{cor:minimum-entry-based-criterion}, which states a criterion for atoms based on the minimum entry.
+\end{enumerate}
+\end{remark*}
+
+\begin{proof}[Proof of~\ref{item:implication-cor}]
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix as illustrated in Figure~\ref{fig:s-form} with $\| A\|_0 = a_{12} \in \{ 1,\, 2,\, 3\}$. Note that 
+\[ 2\sqrt{(a_{11}-1)(a_{22}-1)} \geq 2\sqrt{(a_{22}-1)(a_{22}-1)} = 2a_{22}-2. \]
+Using $a_{21} \leq a_{22} - 1$ and $\| A \|_{\infty} = a_{11}>1$, we conclude
+\begin{align*}
+\left \lvert \det{A} \right \rvert &= a_{11}a_{22}-a_{12}a_{21} \geq a_{11}a_{22}-3(a_{22}-1) = \\
+&=  a_{11}a_{22}-3a_{22} +3 = (a_{11}-1)(a_{22}-1) - (2a_{22} -2) + a_{11} > \\
+&> (a_{11}-1)(a_{22}-1) - 2\sqrt{(a_{11}-1)(a_{22}-1)} + 1 = (\sqrt{(a_{11}-1)(a_{22}-1)}-1)^2.
+\end{align*} 
+\end{proof}
+
+\begin{example}
+Consider again the matrix 
+\[ A_{p,q} \coloneqq \begin{pmatrix} p & q \\ q & p \end{pmatrix} \]
+for $p >q$ and $\gcd(p,\,q) =1$. We aim to improve the statement that specifies the choices of $p$ and $q$ for which the matrix $A_{p,q}$ is an atom. By Theorem~\ref{theorem:det-bound}, we want that 
+\[ \left \lvert \det{A} \right \rvert > (m_1-2)^2 \iff p^2-q^2 > (p-2)^2 \iff p > \frac{q^2}{4} +1. \]
+Hence, for $p> \frac{q^2}{4} +1$, the matrix $A_{p,q}$ is irreducible.
+\end{example}
+
+Lastly, we want to examine, applying determinant-based criteria, how many irreducible non-FE-triangular matrices we are able to detect yet. For this, we use a SageMath script, which can be found in the appendix in Section~\ref{sec:computations}, and count the number of non-unit matrices in $S$-form, of irreducible non-FE-triangular matrices (brute force) and of those irreducible non-FE-triangular matrices we can detect using our criteria. To be more precise, we provide the results modulo factorization-equivalence as well.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{c c|c c c c c } 
+& size of entries $<$ & $10$ & $20$ & $30$ & $50$ & $100$ \\ \hline 
+\multirow{4}{*}{\rotatebox[origin=c]{90}{\makecell[c]{regular \\ counting}}} & $\#$non-units in $S$-form & $682$ & $12558$ & $59474$ & $459322$ & $7051586$ \\
+& $\#$non-FE triangular atoms & $664$ & $11652$ & $53970$ & $399386$ & $5823282$ \\
+& $\#$detected non-FE triangular atoms & $664$ & $11192$ & $49366$ & $331812$ & $4142778$ \\
+& detection rate & $100 \%$ & $96.05 \%$ & $91.47 \%$ & $83.08 \%$  & $71.14 \%$\\ \hline \hline
+\multirow{4}{*}{\rotatebox[origin=c]{90}{\makecell[c]{mod factor.-\\ equiv.}}} & $\#$non-units in $S$-form & $153$ & $2172$ & $9401$ & $66490$ & $951973$ \\
+& $\#$non-FE triangular atoms & $147$ & $1999$ & $8483$  & $57730$ & $786507$ \\
+& $\#$detected non-FE triangular atoms & $147$ & $1898$ & $7668$ & $47460$ & $556230$ \\
+& detection rate & $100 \%$ & $94.95 \%$ & $90.39 \%$ & $82.21 \%$ & $70.72 \%$ \\ 
+\end{tabular} \caption{Performance of the criteria for identifying irreducible non-FE-triangular matrices}\label{table:performance-criteria}
+\end{center}
+\end{table}
+
+
+\section{Heuristic approach for factorizations in $\M{2}$}\label{sec:heuristic}
+Ultimately, our target is to establish some algorithms and heuristics for finding factorizations. For a given factorizable matrix, the central idea is to transform it into $S$-form and subsequently attempt to decide the (ir)reducibility of this matrix in its $S$-form, using the theory we have introduced.
+
+As Theorem~\ref{theorem:s-form-factors-non-zero} demonstrates, the essence of $S$-form is the absence of divisors, which are factorization-equivalent to upper triangular matrices. Let us revisit that, by Proposition~\ref{prop:2x2-upper-triangular}, irreducible FE-triangular matrices are given by 
+\[ R_{12}(1) = \begin{pmatrix} 1 & 1\\ 0 & 1 \end{pmatrix} \quad \text{and} \quad S_{1}(p) = \begin{pmatrix} p & 0\\ 0 & 1 \end{pmatrix} \; \text{with} \; p \in \mathbb{P} \]
+and their factorization-equivalents. Multiplying by these matrices represents an elementary column or row operation, which is well understood. Hence, transforming a matrix into $S$-form can be easily achieved by reversing elementary operations and factoring out these matrices. If we lack theory for deciding if the resulting $S$-form is an atom or not, sometimes educated guessing or a brute force approach can be an option. Figure~\ref{fig:sketch-heuristic} illustrates this concept of obtaining a factorization, which will be elaborated and discussed in the following.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[decoration=snake,
+nodestyle/.style={draw, minimum height = 0.6cm, text centered}
+]
+\node[nodestyle] (matrix) {matrix};
+\node[nodestyle] (sform) [right=of matrix] {bring in $S$-form};
+\node[nodestyle] (atom) [right=of sform] {irreducible?};
+\node[nodestyle] (fact) [right=of atom] {factorization};
+
+\draw[->] (matrix.east) -- (sform.west);
+\draw[->] (sform.east) -- (atom.west)  node[midway, below, yshift=-1.25cm, nodestyle] (edu) {non-trivial factors};
+\node[font=\tiny] [above of= edu,yshift=-0.25cm,align=left] {criteria, \\ educated guessing \& \\ brute force};
+\draw[->] (atom.east) -- (fact.west) node[midway, above,font=\tiny] {yes};
+\draw[<-, decorate,decoration={amplitude=0.5mm}] ([xshift=-0.5cm] edu.north east) -- ([xshift=-0.5cm,yshift=0.95cm] edu.north east) node[midway, right,font=\tiny] {no};
+\draw[->, decorate,decoration={amplitude=0.5mm}] ([xshift=0.5cm] edu.north west) -- ([xshift=0.5cm,yshift=0.95cm] edu.north west);
+\end{tikzpicture} \caption{Sketch of the factorization heuristic}\label{fig:sketch-heuristic}
+\end{center}
+\end{figure}
+
+First, we want to provide an introductory example that illustrates the essence behind the algorithmic idea.
+
+\begin{example}\label{ex:factorization-alg}
+We consider the factorizable matrix
+\[ A \coloneqq \begin{pmatrix} 60 & 42 \\ 73 & 37 \end{pmatrix}, \]
+of which we want to find a factorization. For that, we want to transform $A$ into $S$-form. As a two-step procedure, we first convert the matrix $A$ into rowwise $S$-form. Then, we proceed to convert the remaining matrix into columnwise $S$-form, resulting in a matrix that satisfies the $S$-conditions both in rows and columns.
+
+In the beginning, we determine if the given matrix does not meet the $\gcd$ condition of the $S$-form in a rowwise manner. In the next step, we factor out the belonging irreducible FE-triangular matrices to eliminate the violation of~\ref{item:gcd-condition}. Consecutively, we repeat this with the non-comparability condition. Lastly, we iteratively apply the described routine until the remaining matrix satisfies the rowwise $S$-conditions.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{c|c c c|c c}
+\multirow{2}{*}{step $k$} & \multicolumn{2}{c}{$\gcd(a^{(k-1)}_{i1},a^{(k-1)}_{i2})$} & \multirow{2}{*}{$\tilde{A}^{(k)}$} & \multirow{2}{*}{$\tilde{a}^{(k)}_{1,\bullet} (\preceq/\succeq) \tilde{a}^{(k)}_{2,\bullet}$?} & \multirow{2}{*}{$A^{(k)}$} \\
+& $i=1$ & $i=2$ & & & \\ \hline
+$1$ & $6$ & $1$ & \multirow{2}{*}{$\begin{pmatrix} 10 & 7 \\ 73 & 37 \end{pmatrix}$} & \cmark: $5 \tilde{a}^{(1)}_{1,\bullet} \preceq \tilde{a}^{(1)}_{2,\bullet}$ & \multirow{2}{*}{$\begin{pmatrix} 10 & 7 \\ 23 & 2 \end{pmatrix}$} \\ 
+matrices & $S_1(6)=S_1(2)S_1(3)$ & $I_2$ & & $R_{21}(5)=R_{21}(1)^5$ & \\ 
+\end{tabular}\caption{Conversion of $A$ into rowwise $S$-form}\label{table:conversion-row}
+\end{center}
+\end{table}
+
+Table~\ref{table:conversion-row} documents these steps for the given matrix $A$, where $\tilde{A}^{(k)}$ and $A^{(k)}$ denote the remaining matrices after eliminating non-fulfillment of the $\gcd$ condition or the non-comparability condition, respectively. In particular, we define $A^{(0)} \coloneqq A$. This leads to a first multiplicative decomposition in a rowwise $S$-form, which is multiplied from the left by irreducible FE-triangular matrices, i.e.,
+\[ A = S_1(2)S_1(3)R_{21}(1)^5A^{(1)} =\begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 3 & 0 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}^5 \begin{pmatrix} 10 & 7 \\ 23 & 2 \end{pmatrix}. \]
+
+Analogously, we transform the remaining matrix $A^{(1)}$ into columnwise $S$-form. Table~\ref{table:conversion-col} illustrates the needed steps.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{c|c c c|c c} 
+\multirow{2}{*}{step $k$} & \multicolumn{2}{c}{$\gcd(a^{(k-1)}_{1j},a^{(k-1)}_{2j})$} & \multirow{2}{*}{$\tilde{A}^{(k)}$} & \multirow{2}{*}{$\tilde{a}^{(k)}_{1} (\preceq/\succeq) \tilde{a}^{(k)}_{2}$?} & \multirow{2}{*}{$A^{(k)}$} \\
+& $j=1$ & $j=2$ & & & \\ \hline 
+$2$ & $1$ & $1$ & \multirow{2}{*}{$A^{(1)}$} & \cmark: $\tilde{a}^{(2)}_{1} \succeq \tilde{a}^{(2)}_{2}$ & \multirow{2}{*}{$\begin{pmatrix} 3 & 7 \\ 21 & 2 \end{pmatrix}$} \\ 
+matrices & $I_2$ & $I_2$ & & $R_{21}(1)$ & \\ 
+$3$ & $3$ & $1$ & \multirow{2}{*}{$\begin{pmatrix} 1 & 7 \\ 7 & 2 \end{pmatrix}$} & \xmark & \multirow{2}{*}{$\tilde{A}^{(3)}$} \\
+matrices & $S_1(3)$ & $I_2$ & & $I_2$ & \\ 
+\end{tabular}\caption{Conversion of $A^{(1)}$ into columnwise $S$-form}\label{table:conversion-col}
+\end{center}
+\end{table}
+
+This results in 
+\[ A^{(1)} = A^{(3)}S_1(3)R_{21}(1) = \begin{pmatrix} 1 & 7 \\ 7 & 2 \end{pmatrix}\begin{pmatrix} 3 & 0 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}, \]
+where $A^{(3)}$ now satisfies the $S$-conditions. Further, we denote this $S$-form by $S(A)$.
+Everything put together, we obtain a multiplicative decomposition into irreducible FE-triangular matrices and a matrix in $S$-form, i.e.,
+\[ A= S_1(2)S_1(3)R_{21}(1)^5S(A)S_1(3)R_{21}(1) =\begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 3 & 0 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}^5 \begin{pmatrix} 1 & 7 \\ 7 & 2 \end{pmatrix}\begin{pmatrix} 3 & 0 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}.\]
+
+Finally, using the introduced theory, we aim to determine if the resulting $S$-form is an atom. In a lot of cases, irreducibility will hold. This is because most matrices that fulfill the $S$-conditions are atoms if the entries are not too large (compare Table~\ref{table:performance-criteria}). On the one hand, the minimum entry of $S(A)$ is small enough, i.e., $\|S(A) \|_0 = 1 \in \{ 1,\, 2,\, 3 \}$ and, on the other hand, the absolute value of the determinant is prime, i.e., $|\det{S(A)}| = 47 \in \mathbb{P}$. Hence, according to Corollary~\ref{cor:minimum-entry-based-criterion} and~\ref{cor:prime-det}, $S(A)$ is an atom, which means we have found a factorization of $A$.
+\end{example}
+
+\subsection{Transformation of a matrix into $S$-form}
+
+Before we formulate the algorithm as a whole, we aim to introduce the individual components of the algorithm in more detail. Initially, we present the central program segment of transforming a factorizable matrix into $S$-form, as illustrated in Example~\ref{ex:factorization-alg}. 
+
+As a preparation for that, we introduce two subroutines, which  will complete one step of eliminating non-trivial divisors or comparability in a row- or columnwise manner, respectively. Further, these subroutines will append the determined atoms to a list and return the number of new irreducible factors, which have been factored out in the current step.
+
+\newpage
+Algorithm~\ref{alg:elimination} specifies these subroutines.
+
+\begin{breakablealgorithm}
+\caption{Elimination of non-trivial divisors/comparability (subroutines of Algorithm~\ref{alg:transf})}\label{alg:elimination}
+\begin{algorithmic}[1]
+\Require matrix $S \in {\M{2}}^\bullet$, list fac (of known factors), string alt $\in \{ \text{``row''},\,\text{``col''} \}$
+\Ensure (remaining) matrix $\tilde{S} \in {\M{2}}^\bullet$, list $\widetilde{\text{fac}}$ with appended new factors, number $r$ of new factors
+\Function{eliminate\_divisors}{$S$, fac, alt}
+\State $r \gets 0$
+\If{alt = ``row''}
+\State $d_1 \gets \gcd(s_{11},\,s_{12})$, $d_2 \gets \gcd(s_{21},\,s_{22})$
+\For{$i \in \{1,\,2\}$}
+\If{$d_i > 1 $}
+\State $\tilde{s}_{i,\bullet} \gets \frac{1}{d_i} s_{i,\bullet}$
+\State let $d_i = p^{(i)}_1p^{(i)}_2\cdots p^{(i)}_{r_i}$ for $p^{(i)}_{1}$, $p^{(i)}_2$, \dots, $p^{(i)}_{r_i} \in \mathbb{P}$
+\State $\widetilde{\text{fac}} \gets$ \Call{extend\_list}{fac, $[ S_i(p^{(i)}_{1}),\, S_i(p^{(i)}_{2}), \, \dots,\, S_i(p^{(i)}_{r_i}) ]$}
+\State $r \gets r + r_i$
+\EndIf
+\EndFor
+\Else \Comment{alt = ``col''}
+\State $\tilde{S}$, $\widetilde{\text{fac}}$, $r \gets$ \Call{eliminate\_divisors}{$S^t$, fac, alt $\gets$ ``row''}, $\tilde{S} \gets \tilde{S}^t$
+\EndIf
+\State \Return $\tilde{S}$, $\widetilde{\text{fac}}$, $r$
+\EndFunction
+\Statex
+\Function{eliminate\_comparability}{$S$, fac, alt}
+\State $r \gets 0$
+\If{alt = ``row''}
+\For{$(i_1,i_2) \in \{ (1,2), \, (2,1) \}$}
+\If{$s_{i_1,\bullet} \preceq s_{i_2,\bullet}$}
+\State $r \gets \min \left\{ \left\lfloor\frac{a_{i_2,j}}{a_{i_1,j}}\right\rfloor : j \in \{ 1, \, 2 \}\;\text{and}\;a_{i_1,j} \neq 0\right\}$, $\tilde{s}_{i_2,\bullet} \gets s_{i_2,\bullet} + (-r) s_{i_1,\bullet}$
+\State $\widetilde{\text{fac}} \gets$ \Call{extend\_list}{fac, \Call{repeat}{$R_{i_2,i_1}(1)$, $r$}}
+\State \textbf{break}
+\EndIf
+\EndFor
+\Else \Comment{alt = ``col''}
+\State $\tilde{S}$, $\widetilde{\text{fac}}$, $r \gets$ \Call{eliminate\_comparability}{$S^t$, fac, alt $\gets$ ``row''}, $\tilde{S} \gets \tilde{S}^t$
+\State $\widetilde{\text{fac}}[-r-1] \gets \widetilde{\text{fac}}[-r-1]^t$, $\widetilde{\text{fac}}[-r] \gets \widetilde{\text{fac}}[-r]^t$, \dots,  $\widetilde{\text{fac}}[-1] \gets \widetilde{\text{fac}}[-1]^t$ \Comment{new atoms have to be transposed to be correct}
+\EndIf
+\State \Return $\tilde{S}$, $\tilde{\text{fac}}$, $r$
+\EndFunction
+\end{algorithmic}
+\end{breakablealgorithm}
+
+With that in hand, we are able to formulate an algorithm that transforms a given factorizable matrix into $S$-form and returns a multiplicative decomposition in irreducible FE-triangular matrices and a matrix that satisfies the $S$-conditions. 
+
+This transformation is non-unique, which we will explain in more detail later. Nonetheless, to force uniqueness and be able to formulate an algorithm, we agree on some conventions. We split the method into two phases: first, we convert $A$ into rowwise $S$-form, and then we transform the remaining matrix into columnwise $S$-form. In these two phases, we iteratively and consecutively eliminate non-trivial divisors and comparable rows or columns, respectively. Moreover, for the later brute force approach to factor a matrix in $S$-form, we also model a transformation into either a row- or columnwise $S$-form.
+
+Finally, Algorithm~\ref{alg:elimination} formalizes this concept of multiplicatively decomposing a matrix into $S$-form and irreducible FE-triangular matrices.
+
+\begin{breakablealgorithm}
+\caption{Transformation of a matrix into $S$-form}\label{alg:transf}
+\begin{algorithmic}[1]
+\Require $A \in {\M{2}}^\bullet$, string alt $\in \{ \text{``row''},\,\text{``col''},\,\text{``full''} \}$
+\Ensure $S(A)$ in (rowwise/columnwise) $S$-form, list $[B_1, \, B_2, \, \dots, \, B_{m_1}, \, S(A), \, C_1,\, C_2, \,\dots, \,C_{m_2}]$, where $B_1$, $B_2$, \dots, $B_{m_1}$ and $C_1$, $C_2$, \dots, $C_{m_2}$ are irreducible FE-triangular matrices such that $A=B_1B_2\cdots B_{m_1} S(A)C_1C_2\cdots C_{m_2}$
+\Function{s\_form}{$A$, alt $\gets$ ``full''}
+\If{alt $\in \{ \text{``row''},\, \text{``col''} \}$}
+\State $S(A) \gets A$, fac $\gets \left[ \right]$, atoms\_per\_step $\gets 1$
+\While{atoms\_per\_step > 0}
+\State $S(A)$, fac, $r_1 \gets$ \Call{eliminate\_divisors}{$S(A)$, fac, alt}
+\State $S(A)$, fac, $r_2 \gets$ \Call{eliminate\_comparability}{$S(A)$, fac, alt}
+\State atoms\_per\_step  $\gets r_1 +r_2$
+\EndWhile
+\State fac $\gets$ \Call{add\_item\_to\_list}{fac, $S(A)$}
+\If{alt = ``row''}
+\State \Return $S(A)$, fac
+\EndIf
+\State \Return $S(A)$, \Call{reverse\_list}{fac} \Comment{alt = ``col''; atoms are factored out from the right}
+\Else \Comment{alt = ``full''}
+\State $S(A)$, $\text{fac}_1 \gets$ \Call{s\_form}{$A$, alt $\gets$ ``row''}
+\State $S(A)$, $\text{fac}_2 \gets$ \Call{s\_form}{$S(A)$, alt $\gets$ ``col''}
+\State $\text{fac}_1 \gets$ \Call{remove\_last\_item}{$\text{fac}_1$} \Comment{replace rowwise $S$-form of $A$ by further decomposition}
+\State \Return $S(A)$, \Call{concatenate\_lists}{$\text{fac}_1$, $\text{fac}_2$}
+\EndIf
+\EndFunction
+\end{algorithmic}
+\end{breakablealgorithm}
+
+\begin{notation*}
+For $A \in {\M{2}}^\bullet$, we denote its $S$-form obtained by the Algorithm~\ref{alg:transf} by $S(A)$.
+\end{notation*}
+
+\begin{remark*}
+\mbox{}\vspace{-2\topskip}
+\begin{enumerate}[label=(\alph*)]
+\item Inherited from the non-uniqueness of factorizations in $\M{2}$, the $S$-form obtained after factoring out irreducible FE-triangular matrices is non-unique. Consider the matrix 
+\[ A \coloneqq \begin{pmatrix} 2 & 3 \\ 1 & 3 \end{pmatrix}. \]
+On the one hand, applying Algorithm~\ref{alg:transf} yields $S(A) = I_2$. On the other hand, by factoring irreducible FE-triangular matrices differently, we can transform $A$ into an $S$-form as follows: $A = \tilde{S}R_{12}(1)$ with $\tilde{S} \coloneqq \begin{pmatrix} 2 &1 \\ 1& 2 \end{pmatrix}$, where $\tilde{S}$ is an atom in $S$-form.
+\item Implementations of the presented algorithms can be found in the appendix in Section~\ref{sec:alg}.
+\end{enumerate}
+\end{remark*}
+
+\newpage
+\begin{proposition}\label{prop:alg}
+Algorithm~\ref{alg:transf} terminates and is correct.
+\end{proposition}
+
+\begin{proof}
+Let $A \in {\M{2}}^\bullet$. Then, the termination of the algorithm is trivial since $A$ is factorizable (or trivially a unit), according to Theorem~\ref{theorem:2x2-factorizablitiy}. Hence, only a finite number of atoms can be factored out. We need to argue correctness, i.e., that the resulting matrix $S(A)$ does indeed satisfy the $S$-conditions. By inspection, we only need to show that transforming a matrix in columnwise $S$-form does not interfere with its rowwise properties. Let $A^{(k)}$ denote the remaining matrix after the $k$-th step and $d_1$, $d_2$ denote the greatest common divisor of the entries of the first and second column, respectively. Further, we assume that $A^{(k)}$ is in rowwise $S$-form. We now prove that $A^{(k+1)}$, the matrix obtained by $A^{(k)}$ after applying one step of conversion into columnwise $S$-form, is still in rowwise $S$-form. We consider the two successive steps of eliminating divisors and comparable columns.
+\begin{enumerate}[label=(\alph*)]
+\item\label{item:correctness-alg} Since, in this step, only identical factors have been removed from every column, it is easy to see that the matrix 
+\[\tilde{A}^{(k+1)} = \begin{pNiceArray}{c:c} \frac{1}{d_1} a_1^{(k)} & \frac{1}{d_2} a_2^{(k)}\end{pNiceArray} \]
+still fulfills the $S$-condition in a rowwise manner.
+\item If the non-comparability condition holds, we are done. Otherwise, without loss of generality, we assume that $r \tilde{a}_1^{(k+1)} \preceq \tilde{a}_2^{(k+1)}$ holds, where $r \in \mathbb{N}$ is chosen as large as possible. This means that
+\[ A^{(k+1)} = \begin{pNiceArray}{c:c} \tilde{a}_1^{(k+1)} & \tilde{a}_2^{(k+1)} + (-r) \tilde{a}_1^{(k+1)}\end{pNiceArray}. \]
+On the one hand, due to Euclid's Algorithm, for $i=1,2$, the equations
+\[ \gcd(a_{i1}^{(k+1)},\, a_{i2}^{(k+1)}) = \gcd(\tilde{a}_{i1}^{(k+1)},\, \tilde{a}_{i2}^{(k+1)} + (-r) \tilde{a}_{i1}^{(k+1)}) = \gcd(\tilde{a}_{i1}^{(k+1)},\, \tilde{a}_{i2}^{(k+1)})= 1 \]
+are satisfied. On the other hand, step~\ref{item:correctness-alg} guarantees the rowwise $S$-form of $\tilde{A}^{(k+1)}$. Hence, without loss of generality, we can assume that $\tilde{a}_{11}^{(k+1)} <  \tilde{a}_{21}^{(k+1)}$ and $\tilde{a}_{12}^{(k+1)} >  \tilde{a}_{22}^{(k+1)}$ holds. Subsequently, this means that $(-r) \tilde{a}_{11}^{(k+1)} > (-r) \tilde{a}_{21}^{(k+1)}$. Finally, we obtain
+\begin{align*}
+a_{11}^{(k+1)} = \tilde{a}_{11}^{(k+1)} &< \tilde{a}_{21}^{(k+1)} = a_{21}^{(k+1)} \quad \text{and}  \\
+a_{12}^{(k+1)} = \tilde{a}_{12}^{(k+1)} + (-r) \tilde{a}_{11}^{(k+1)} &> \tilde{a}_{22}^{(k+1)} + (-r) \tilde{a}_{21}^{(k+1)} = a_{22}^{(k+1)},
+\end{align*}
+which means that the non-comparability condition of the rows still holds.
+\end{enumerate}
+\end{proof}
+
+\subsection{Factorization of matrices in $S$-form}
+
+Next, we would like to provide an example and give some intuition into what can be done in certain cases if the resulting $S$-form does not satisfy any criteria or is reducible.
+
+\begin{example}\label{ex:fac-educated-guessing}
+For the factorizable matrix 
+\[ A \coloneqq \begin{pmatrix} 38 & 26 \\ 49 & 46 \end{pmatrix}, \]
+applying the presented algorithm leads to the multiplicative decomposition $A = S_1(2)R_{21}(1)^2S(A)$ with $S(A) = \begin{pmatrix} 19 & 13 \\ 11 & 20 \end{pmatrix}$. Since $S(A)$ does not satisfy any criteria for irreducibility, we have to dig deeper to find a factorization of $A$. It holds that $\left \lvert \det{S(A)} \right \rvert = 237 = 3\cdot 79 \in 3\cdot \mathbb{P}$. Hence, we check if an irreducible matrix of determinant $\pm 3$ can be factored out, i.e., we check if there exist an atom $B \in \mathbb{N}^{2 \times 2}$ with $\left \lvert \det{B} \right \rvert = 3$ and a matrix $C \in \mathbb{N}^{2 \times 2}$ such that $S(A) =BC$ or $S(A) = CB$.  Without loss of generality, we can assume that $\det{B} =3$. As per Proposition~\ref{prop:det-s-form}, there exists just one potential option for $B$, which is $B = \begin{pmatrix} 2 & 1 \\ 1 & 2\end{pmatrix}$. We look for non-negative integer solutions of the two linear systems. Starting with $S(A) = BC$, by multiplying out, we obtain
+\[ \begin{cases} 2c_{11}  + c_{21} = 19 \\ c_{11}  + 2c_{21} = 11 \end{cases} \quad \text{and} \quad \begin{cases}2c_{12} + c_{22} = 13 \\ c_{12} + 2c_{22} = 20 \end{cases}.\]
+This system has a unique solution $c_{11} = 9$, $c_{21} = 1$ and $c_{12} = 2$, $c_{22} = 9$. The resulting matrix $C$ is also an atom, as it satisfies the $S$-conditions and must have a prime determinant. Hence, we factorized $S(A)$ and have found a factorization of $A$, i.e.,
+\[ A = S_1(2)R_{21}(1)^2 S(A)=S_1(2)R_{21}(1)^2BC = \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}^2\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}\begin{pmatrix} 9 & 2 \\ 1 & 9 \end{pmatrix}. \]
+\end{example}
+
+Example~\ref{ex:fac-educated-guessing} has illustrated that the problem of factorization of a matrix $A \in \M{2}\setminus\mathcal{E}(\M{2})$ in $S$-form with $\left \lvert \det{A} \right \rvert \in 3 \cdot \mathbb{P}$ reduces to solving two linear systems. The next proposition shows that solving these linear systems either implies the irreducibility or provides a full factorization of $A$.
+
+\begin{proposition}[Factorization of matrices with a determinant in $3 \cdot \mathbb{P}$]
+Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix in $S$-form with $\left \lvert \det{A} \right \rvert  \in 3 \cdot \mathbb{P}$. Then $A$ is an atom if and only if there exists no matrix $\tilde{A} \in \mathbb{N}^{2 \times 2}$ such that 
+\[A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}\tilde{A} \quad \text{or} \quad A = \tilde{A} \begin{pmatrix} 2 & 1 \\ 1 & 2\end{pmatrix}.\]
+In the case of reducibility, this matrix $\tilde{A}$ is also already irreducible.
+\end{proposition}
+
+\begin{proof}
+Looking back to the Example~\ref{ex:fac-educated-guessing}, what remains to be proven is that in the case of reducibility, the remaining matrix is already an atom. Let  $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix in $S$-form and $\tilde{A} \in \mathbb{N}^{2 \times 2}$ such that $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}\tilde{A}$. Since it holds that $\lvert \det{\tilde{A}} \rvert = p$, we only need to show that $\tilde{A}$ does satisfy the $S$-conditions and Proposition~\ref{cor:prime-det} is doing the rest. Applying Algorithm~\ref{alg:elimination}, gives us that, for a suitable $m \in \NN$ and suitable irreducible FE-triangular matrices $\tilde{A}_1$, $\tilde{A}_2$, \dots, $\tilde{A}_m \in \M{2}$, the matrix $\tilde{A}$ can be decomposed in $\tilde{A} = \prod_{i=1}^m \tilde{A}_i S(\tilde{A})$. We now argue that $m=0$. We proceed by contradiction, assume $m>0$, and distinguish between two cases.
+\begin{enumerate}[label=(\alph*)]
+\item Case ``$ \lvert \det{\tilde{A}_1} \rvert =p$'':  Since the determinant function is multiplicative, we can conclude that $ \lvert \det{S(\tilde{A})} \rvert = 1$. According to~\ref{prop:det-s-form}, this cannot happen unless $S(\tilde{A})$ is a unit. Hence, $S(\tilde{A}) \in \mathcal{E}(\M{2})$. Setting 
+\[B \coloneqq \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix} \prod_{i=1}^{m-1}\tilde{A}_i \quad \text{and} \quad C = \tilde{A}_m S(\tilde{A}),\] 
+it holds that $A = BC$, where the matrix $C$ is FE-triangular. This contradicts Theorem~\ref{theorem:s-form-factors-non-zero}.
+\item Case ``$\lvert \det{\tilde{A}_1} \rvert =1$'': This means that $\tilde{A}_1 \in \{ R_{12}, \, R_{21} \}$. Setting 
+\[ B \coloneqq \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}\tilde{A}_1 \quad \text{and} \quad C = \prod_{i=2}^m \tilde{A}_i S(\tilde{A}), \]
+it holds that $A=BC$. The matrix 
+\[ B = \begin{cases} \begin{pmatrix} 2 & 3 \\ 1 & 3 \end{pmatrix} & \text{if}\;\tilde{A}_1 = R_{12} \\ \begin{pmatrix} 3 & 1 \\ 3 & 2 \end{pmatrix} & \text{if}\;\tilde{A}_1 = R_{21} \end{cases} \]
+violates the non-comparibility-condition in a rowwise manner, which is a contradiction.
+\end{enumerate}
+\end{proof}
+
+\subsection{Brute force factorization algorithm}
+
+In the end, our goal is to investigate how a brute force approach can be an option to find a factorization if the theory we have established proves to be insufficient. We introduce a complete factorization algorithm that relies on brute force if other approaches fail.
+
+Most importantly, the question arises: how do we prove the irreducibility of matrices or decompose reducible matrices that satisfy the $S$-conditions? Let $A \in \M{2}\setminus\mathcal{E}(\M{2})$ be a matrix in $S$-form. We want to check if there exist matrices $B$, $C \in  \M{2}\setminus\mathcal{E}(\M{2})$ such that $A = BC$. For that, we loop over all possible choices of $B$ and $C$. According to Theorem~\ref{theorem:s-form-factors-non-zero}, we can restrict ourselves to factors in rowwise or columnwise $S$-form with no zero-entries, respectively. Furthermore, as all entries are positive, we only need to take into account a finite set of choices for the entries. In addition, we argue that it suffices to consider $B$ with the structure of Figure~\ref{fig:structure-b}.
+
+\begin{figure}[htbp]
+\[ B \coloneqq \begin{pmatrix} \colorbox{aaugray}{$b_{11}$} & b_{12} \\ > & < \\ b_{21} & b_{22} \end{pmatrix} \]
+\caption{Structure of $B$ in irreducibility test}\label{fig:structure-b}
+\end{figure}
+
+This is achievable through multiplication by units. Because: Assume $A=BC$ and $B$ does not satisfy the above form. Hence, the inequality signs are exchanged. Then it holds that
+\[ A = BC = \tilde{B}\tilde{C} \quad \text{with} \quad \tilde{B} \coloneqq B\begin{pNiceArray}{c:c} e_2 & e_1\end{pNiceArray}\;\text{and}\;\tilde{C} \coloneqq \begin{pNiceArray}{c:c} e_2 & e_1\end{pNiceArray}C \]
+and $\tilde{B}$ has the desired structure. Putting this into pseudocode, we obtain Algorithm~\ref{alg:irreducibility-test}.
+
+\begin{breakablealgorithm}
+\caption{Brute force $S$-form irreducibility test}\label{alg:irreducibility-test}
+\begin{algorithmic}[1]
+\Require $A \in \M{2}\setminus\mathcal{E}(\M{2})$ in $S$-form
+\Ensure boolean referring to the irreducibility of $A$ and $B$, $C \in \M{2}\setminus\mathcal{E}(\M{2})$ such that $A=BC$ 
+\Function{is\_nonfetriangular\_atom}{$A$}
+\State{$m_1 \gets \min(a_{11},\, a_{12})$}
+\State{$m_2 \gets \min(a_{21},\, a_{22})$}
+\ForAll{$B \in \mathbb{N}^{2\times 2}$ in rowwise $S$-form with $b_{11} < m_1$, $b_{12} \leq m_1-b_{11}$, $b_{21} < m_2$ and $b_{22} \leq m_2 - b_{21}$ and the structure of Figure~\ref{fig:structure-b}}
+\State{$\tilde{m_1} \gets \min(\lfloor \frac{a_{11}-b_{12}}{b_{11}} \rfloor, \, \lfloor \frac{a_{21}-b_{22}}{b_{21}}\rfloor)$}
+\State{$\tilde{m_2} \gets \min(\lfloor \frac{a_{12}-b_{12}}{b_{11}}\rfloor,\, \lfloor\frac{a_{22}-b_{22}}{b_{21}}\rfloor)$}
+\ForAll{$C \in \mathbb{N}^{2\times 2}$ in columnwise $S$-form with $c_{11} \leq \tilde{m_1}$, $c_{12} \leq \tilde{m_2}$, $c_{21} = \frac{a_{11}-b_{11}c_{11}}{b_{12}} = \frac{a_{21}-b_{21}c_{11}}{b_{22}}$ and $c_{22} = \frac{a_{12}-b_{11}c_{12}}{b_{12}} = \frac{a_{22}-b_{21}c_{12}}{b_{22}}$}
+\If{$A=BC$} \State{\Return False, $B$, $C$}
+\EndIf
+\EndFor
+\EndFor
+\State{\Return True, None, None}
+\EndFunction
+\end{algorithmic}
+\end{breakablealgorithm}
+
+Using the implementation of Algorithm~\ref{alg:irreducibility-test} and the code snippet, which both can be found in the appendix, we generate $10$ random non-unit matrices in $S$-form for each entry size and analyze the average time needed for brute force testing the irreducibility. 
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{c|c c c c c} 
+size of entries $<$ & $10$ & $20$ & $30$ & $50$ & $100$ \\ \hline 
+average time & \SI{0.40541}{\milli\second} & \SI{2.96504}{\milli\second} & \SI{5.12927}{\milli\second} & \SI{107.32338}{\milli\second} & \SI{632.04715}{\milli\second} \\ \hline \hline
+size of entries $<$ & & $200$ & $300$ & $500$ & $1000$ \\ \hline
+average time & & \SI{10.94}{\second} & \SI{1}{\minute} \SI{5.47}{\second} & \SI{5}{\minute} \SI{24.95}{\second} & \SI{48}{\minute} \SI{6.92}{\second} \\
+\end{tabular} \caption{Efficiency and execution time analysis of Algorithm~\ref{alg:irreducibility-test}}\label{table:efficiency}
+\end{center}
+\end{table}
+
+Before finally providing a full factorization algorithm based on Algorithm~\ref{alg:transf} and~\ref{alg:irreducibility-test}, we will be presenting an illustrative example.
+
+\begin{example}
+We aim to find a factorization of the matrix
+\[ A \coloneqq \begin{pmatrix} 1119 & 1878 \\ 1555  & 3260\end{pmatrix}. \]
+As a first step, we apply Algorithm~\ref{alg:transf} to transform $A$ into $S$-form and obtain, as a first decomposition, that $A = S_1(3)S_2(5)S(A)S_2(2)$ with $S(A) = \begin{pmatrix} 373 & 313 \\ 311 & 326 \end{pmatrix}$. The existing theory lacks tools to further factorize the resulting $S$-form $S(A)$. Hence, we make use of the presented brute force irreducibility test and get that
+\[ S(A) = BC \quad \text{with} \quad B \coloneqq \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}\;\text{and}\;C \coloneqq \begin{pmatrix} 145 & 100 \\ 83 & 113 \end{pmatrix}. \]
+We observe that the matrix $B$ is already an atom. According to Theorem~\ref{theorem:s-form-factors-non-zero}, the right factor of a matrix in $S$-form satisfies the $S$-conditions in a columnwise manner. Thus, we only need to apply Algorithm~\ref{alg:transf} in a rowwise manner to transform $C$ into $S$-form and obtain $C = S_1(5)R_{21}(1)^2S(C)$ with $S(C) = \begin{pmatrix} 29 & 20 \\ 25 & 73 \end{pmatrix}$. Again we brute force factorize $S(C)$ and get 
+\[ S(C) = DE \quad \text{with} \quad D \coloneqq \begin{pmatrix} 2 & 1 \\ 1 & 4 \end{pmatrix}\;\text{and}\;E \coloneqq \begin{pmatrix} 13 & 1 \\ 3 & 18 \end{pmatrix}.  \]
+As the minimum entry in $D$ is less than or equal to $3$, the matrix $D$ is irreducible. Transforming $E$ into $S$-form, i.e., $E = S_2(3)S(E)$ with $S(E) = \begin{pmatrix} 13 & 1 \\ 1 & 6 \end{pmatrix}$, we notice that, by Corollary~\ref{cor:minimum-entry-based-criterion}, the $S$-form $S(E)$ is an atom as well. Putting all pieces together, we have found a factorization of $A$, namely
+\[ A= \begin{pmatrix} 3 & 0 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 5 \end{pmatrix}\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}\begin{pmatrix} 5 & 0 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}^2\begin{pmatrix} 2 & 1 \\ 1 & 4 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} 13 & 1 \\ 1 & 6 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}.\]
+\end{example}
+
+Eventually, we are able to formulate a complete factorization algorithm that relies on a subroutine for factorizing $S$-forms. This subroutine iteratively resorts to brute force when the theory falls short.
+
+\begin{breakablealgorithm}
+\caption{Brute force factorization}\label{alg:factorization}
+\begin{algorithmic}[1]
+\Require $S \in \M{2}\setminus\mathcal{E}(\M{2})$ in $S$-form or $A \in {\M{2}}^\bullet$, respectively
+\Ensure list $[S_1, \, S_2,\, \dots, \,S_m]$ or $[A_1,\,A_2,\, \dots, \,A_m]$, where $S_1$, $S_2$, \dots, $S_m$ or $A_1$, $A_2$, \dots, $A_m$ are atoms (or a unit) such that $S = S_1S_2\cdots S_m$ or $A = A_1 A_2 \cdots A_m$, respectively
+\Function{s\_factorize}{$S$} \Comment{subroutine for factorizing $S$-forms}
+\If{$S$ satisfies Corollary~\ref{cor:prime-det}, the corresponding remark or Theorem~\ref{theorem:det-bound}}
+\State \Return $[S]$
+\EndIf
+\State is\_atom, $B$, $C \gets$ \Call{is\_nonfetriangular\_atom}{$S$}
+\If{is\_atom = True} 
+\State \Return $[S]$
+\EndIf
+\State $S(B)$, $\text{fac}_B \gets$ \Call{s\_form}{$B$, alt = ``col''}, $S(C)$, $\text{fac}_C \gets$ \Call{s\_form}{$C$, alt = ``row''}
+\State \Return \Call{concatenate\_lists}{\Call{s\_factorize}{$S(B)$}, \Call{remove\_first\_item}{$\text{fac}_B$}, \Statex \Call{remove\_last\_item}{$\text{fac}_C$}, \Call{s\_factorize}{$S(C)$}}
+\EndFunction
+\Statex
+\Function{factorize}{$A}$
+\State $S(A)$, fac $\gets$ \Call{s\_form}{$A$}
+\If{$S(A) \in \mathcal{E}(\M{2})$} 
+\State \Return fac
+\EndIf
+\State \Return \Call{replace\_item}{$S(A)$, \Call{s\_factorize}{$S(A)$}} \Comment{replace $S(A)$ by its factorization}
+\EndFunction
+\end{algorithmic}
+\end{breakablealgorithm}
+
+At this point, we want to test the performance of Algorithm~\ref{alg:factorization} as well. We generate $100$ random factorizable matrices for each entry size and compute the average execution time for finding a factorization. Again, code can be found in the appendix in Section~\ref{sec:computations}.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{c|c c c c c} 
+size of entries $<$ & $10$ & $20$ & $30$ & $50$ & $100$ \\ \hline 
+average time & \SI{1.12768}{\milli\second} & \SI{1.47801}{\milli\second} & \SI{1.66103}{\milli\second} & \SI{2.49450}{\milli\second} & \SI{27.02834}{\milli\second} \\ \hline \hline
+size of entries $<$ & & $200$ & $300$ & $500$ & $1000$ \\ \hline
+average time & & \SI{397.94381}{\milli\second} & \SI{1.23508}{\second} & \SI{18.29775}{\second} &  \SI{90.04187}{\second} \\
+\end{tabular} \caption{Efficiency and execution time analysis of Algorithm~\ref{alg:factorization}}\label{table:efficiency-fac}
+\end{center}
+\end{table} 
+
+\newpage
+Since the transformation into $S$-form is computationally efficient, the run time of brute force factorization is mainly driven by Algorithm~\ref{alg:irreducibility-test}. Hence, the factorization algorithm performs effectively if the resulting $S$-forms are already atoms, detectable by our criteria, or if the entries are not excessively large. 

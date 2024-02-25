@@ -1,0 +1,45 @@
+\ProvidesFile{mtnumeric.bbx}[2023/09/12 Custom bibliography style based on numeric provding dashed-option.]
+
+\RequireBibliographyStyle{standard}
+\RequireBibliographyStyle{numeric}
+
+\renewcommand*{\bibnamedash}{\rule{3em}{0.4pt}\hspace*{.16667em}\addperiod\addspace}
+%
+\DeclareBibliographyOption[boolean]{dashed}[true]{%
+  \ifstrequal{#1}{true}
+    {\ExecuteBibliographyOptions{pagetracker}%
+     \renewbibmacro*{bbx:savehash}{\savefield{fullhash}{\bbx@lasthash}}}
+    {\renewbibmacro*{bbx:savehash}{}}}
+%
+\newbibmacro*{bbx:savehash}{%
+  \savefield{fullhash}{\bbx@lasthash}}
+
+\renewbibmacro*{author}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+  {\usebibmacro{bbx:dashcheck}
+    {\bibnamedash}
+    {\printnames{author}%
+      \setunit{\addcomma\space}%
+      \usebibmacro{bbx:savehash}}%
+    \usebibmacro{authorstrg}}
+  {\global\undef\bbx@lasthash}}
+
+\newbibmacro*{bbx:dashcheck}[2]{%
+  \ifboolexpr{
+    test {\iffieldequals{fullhash}{\bbx@lasthash}}
+    and
+    not test \iffirstonpage
+    % NOTE: the follow only matters if you have defined and set up the boolean `bbx@inset` (which is defined in authortitle.bbx).
+    % and
+    % (
+    %   not bool {bbx@inset}
+    %   or
+    %   test {\iffieldequalstr{entrysetcount}{1}}
+    % )
+  }
+  {#1}
+  {#2}}

@@ -1,0 +1,111 @@
+%% General packages
+\usepackage[utf8]{inputenc} % For coding and special characters
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % Fancier font
+\usepackage[top=3cm,bottom=3cm,left=2.5cm,right=2.5cm]{geometry} 
+
+\usepackage{graphicx} 
+\usepackage{blindtext} 
+
+%% Colors
+\usepackage{xcolor} % Farben
+\definecolor{aaudarkblue}{RGB}{67, 111, 128}
+\definecolor{aaublue}{RGB}{83, 159, 198}
+\definecolor{aaulightgray}{RGB}{232,232,232}
+\definecolor{aaugray}{RGB}{98,98,98}
+
+%% Design Choices
+\usepackage[labelfont=bf]{caption}
+\usepackage{enumitem}
+\usepackage{float}
+\setlist[itemize]{label=$\blacktriangleright$}
+
+%% Header and footer
+\usepackage[autooneside=false, automark]{scrlayer-scrpage} 
+\pagestyle{scrheadings} % Activate style
+\clearpairofpagestyles % Clear current setting
+\automark[section]{section} % set \headmark to contain the headings of \section
+\ihead{\textnormal{\headmark}} % reference to the adjusted headmark at the inside of the head
+\ohead[\pagemark]{\pagemark} % reference to the page number at the outside of the head
+\KOMAoptions{headsepline = true} % Activate seperation line for the header
+
+%% For typesetting math
+\input{../math-commands.sty}
+
+%% (Framed) theorem environments
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfdefinestyle{theoremstyle}{ % Define new style for theorems
+	linecolor=aaublue,
+	linewidth=1pt,
+	frametitlerule=false,%
+	apptotikzsetting={\tikzset{mdfframetitlebackground/.append style={
+	color=aaublue!65}}},
+	innertopmargin=\topskip,
+	innerbottommargin=\topskip,
+	nobreak=false,
+	backgroundcolor=aaublue!15,
+	frametitlefont=\bfseries,
+	theoremtitlefont=\normalfont,
+	footnoteinside=false
+}
+\mdtheorem[style=theoremstyle]{theorem}[examplex]{Theorem} 
+\mdtheorem[style=theoremstyle]{proposition}[examplex]{Proposition} 
+\mdtheorem[style=theoremstyle]{lemma}[examplex]{Lemma} 
+\mdtheorem[style=theoremstyle]{corollary}[examplex]{Corollary} 
+\mdfdefinestyle{definitionstyle}{ % Define new style for definitions
+	linecolor=aaulightgray!135,
+	linewidth=1pt,
+	frametitlerule=false,%
+	apptotikzsetting={\tikzset{mdfframetitlebackground/.append style={
+	color=aaulightgray}}},
+	innertopmargin=\topskip,
+	innerbottommargin=\topskip,
+	nobreak=false,
+	backgroundcolor=aaulightgray!50,
+	frametitlefont=\bfseries,
+	theoremtitlefont=\normalfont,
+	footnoteinside=false
+}
+\mdtheorem[style=definitionstyle]{definition}[examplex]{Definition}
+
+\newtheoremstyle{examplestyle} % Define new style for examples (bold heading, linebreak, normal text)
+	{\topsep}{\topsep}
+	{}{}
+	{\bfseries}{}
+	{\newline}{}
+\theoremstyle{examplestyle} % Activate style
+\newtheorem{examplex}{Example} % New environment for examples
+\newenvironment{example} % Add triangle at the end of the example environment
+	{\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\examplex}
+	{\popQED\endexamplex}
+  
+\newtheoremstyle{remarkstyle} % Define new style for remarks (bold heading, nomral text)
+	{\topsep}{\topsep}
+	{}{}
+	{\bfseries}{.}
+	{5pt plus 1pt minus 1pt}{}
+\theoremstyle{remarkstyle} % Activate style
+\newtheorem{remarkx}[examplex]{Remark} % New environment for remarks
+\newenvironment{remark} % Add diamond at the end of an remark environment
+	{\pushQED{\qed}\renewcommand{\qedsymbol}{$\diamond$}\remarkx}
+	{\popQED\endremarkx}
+
+
+%% References
+\usepackage[
+	backend=biber, 
+	bibstyle=numeric,
+	natbib=true, 
+	hyperref=true,
+]{biblatex} 
+\addbibresource{lecture-notes-template.bib} % include bib-file
+\nocite{*}
+\let\oldprintbibliography\printbibliography
+\renewcommand{\printbibliography}{% adds new page and correct reference for the table of contents
+	\newpage \phantomsection
+	\addcontentsline{toc}{section}{References}
+	\oldprintbibliography
+}
+\usepackage{csquotes}
+
+\usepackage{hyperref} 
