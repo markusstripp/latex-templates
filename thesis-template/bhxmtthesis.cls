@@ -25,8 +25,6 @@
 \definecolor{aaugray}{gray}{0.95}
 
 %% For typesetting math
-\input{../math-commands.sty}
-
 \RequirePackage[charter]{mathdesign}
 
 %% For typesetting algorithms
@@ -146,8 +144,6 @@
 	\chapter*{#1}
 }
 
-
-
 %% Header and footer
 \RequirePackage[autooneside=false, automark]{scrlayer-scrpage} 
 \pagestyle{scrheadings} 
@@ -197,7 +193,6 @@
 	natbib=true, 
 	hyperref=true
 ]{biblatex}
-\addbibresource{thesis-template.bib}
 \setlength{\bibitemsep}{6.0pt plus 3.0pt minus 1.5pt}
 \nocite{*}
 \let\oldprintbibliography\printbibliography

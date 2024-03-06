@@ -29,9 +29,6 @@
 \ohead[\pagemark]{\pagemark} % reference to the page number at the outside of the head
 \KOMAoptions{headsepline = true} % Activate seperation line for the header
 
-%% For typesetting math
-\input{../math-commands.sty}
-
 %% (Framed) theorem environments
 \usepackage[framemethod=TikZ]{mdframed}
 \mdfdefinestyle{theoremstyle}{ % Define new style for theorems
@@ -98,7 +95,6 @@
 	natbib=true, 
 	hyperref=true,
 ]{biblatex} 
-\addbibresource{lecture-notes-template.bib} % include bib-file
 \nocite{*}
 \let\oldprintbibliography\printbibliography
 \renewcommand{\printbibliography}{% adds new page and correct reference for the table of contents
