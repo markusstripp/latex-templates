@@ -73,6 +73,7 @@
 		\usebeamerfont{subtitle}\insertsubtitle\par
 		\usebeamerfont{titlegraphic}\inserttitlegraphic \vspace{-0.75cm}
 		\usebeamerfont{author}\insertauthor\par
+		\usebeamerfont{institute}\ifx\insertinstitute\empty\else\vspace{1ex}\insertinstitute\vspace{0.5ex}\par\fi
 		\usebeamerfont{date}\insertdate
 	\end{center}
 }
@@ -100,6 +101,8 @@
 
 \setbeamerfont{author}{series=\mdseries, family=\rmfamily\selectfont} 
 \setbeamerfont{titlegraphic}{series=\mdseries, family=\rmfamily\selectfont} 
+\setbeamerfont{institute}{size=\footnotesize, series=\mdseries, family=\rmfamily\selectfont}
+\setbeamerfont{date}{size=\normalsize, series=\mdseries, family=\rmfamily\selectfont}
 
 \setbeamercolor{block title}{bg=aaudarkblue!65, fg=black} 
 \setbeamercolor{block body}{bg=aaudarkblue!15, fg=black}
