@@ -66,6 +66,9 @@
 	\end{beamercolorbox}%
 }
 
+\setbeamerfont{footnote}{size=\tiny}
+\addtobeamertemplate{footnote}{\hsize0.7\paperwidth}{} % Customize width of footnote (so that it does not touch the logo)
+
 \defbeamertemplate*{title page}{customized}[1][]{% Customizing the titlepage
 	\setbeamertemplate{headline}{bg=white}
 	\begin{center}
@@ -108,7 +111,10 @@
 \setbeamercolor{block body}{bg=aaudarkblue!15, fg=black}
 
 \setbeamercolor{alerted text}{fg=aaudarkblue}
-\setbeamerfont{alerted text}{series=\bfseries} 
+
+\setbeamertemplate{sections/subsections in toc}[circle]
+\setbeamercolor{section in toc}{fg=aaudarkblue}
+\setbeamercolor{subsection in toc}{fg=black}
                                      
 %% Customizing enumerate
 \setbeamercolor{item}{fg=aaudarkblue} % Change item color
@@ -131,46 +137,78 @@
 	borderline={1pt}{0pt}{\borderlinecolor} % Add borderline in corresponding block color
 }
 
-\renewenvironment{definition}[1][]{%
+\renewenvironment{definition}[2][]{%
 	\setbeamercolor{block title}{bg=aaulightgray, fg=black} 
     \setbeamercolor{block body}{bg=aaulightgray!50, fg=black}
-\begin{block}{\textbf{Definition}\ifx\empty#1\empty \else\textbf{:} #1 \fi}}{\end{block}}
+    \setbeamercolor{item}{fg=black} 
+\begin{block}{\textbf{Definition}\ifx\empty#1\empty\else~(#1)\fi\ifx\empty#2\empty\else\textbf{:}~#2\fi}}{\end{block}}
 
-\renewenvironment{theorem}[1][]{%
+\renewenvironment{theorem}[2][]{%
 	\setbeamercolor{block title}{bg=aaublue!65, fg=black} 
     \setbeamercolor{block body}{bg=aaublue!15, fg=black}
-\begin{block}{\textbf{Theorem}\ifx\empty#1\empty \else\textbf{:} #1 \fi}}{\end{block}}
+	\setbeamercolor{item}{fg=aaublue} 
+\begin{block}{\textbf{Theorem}\ifx\empty#1\empty\else~(#1)\fi\ifx\empty#2\empty\else\textbf{:}~#2\fi}}{\end{block}}
 
-\renewenvironment{lemma}[1][]{%
+\renewenvironment{lemma}[2][]{%
 	\setbeamercolor{block title}{bg=aaublue!65, fg=black} 
     \setbeamercolor{block body}{bg=aaublue!15, fg=black}
-\begin{block}{\textbf{Lemma}\ifx\empty#1\empty \else\textbf{:} #1 \fi}}{\end{block}}
+    \setbeamercolor{item}{fg=aaublue} 
+\begin{block}{\textbf{Lemma}\ifx\empty#1\empty\else~(#1)\fi\ifx\empty#2\empty\else\textbf{:}~#2\fi}}{\end{block}}
 
-\newenvironment{proposition}[1][]{%
+\newenvironment{proposition}[2][]{%
 	\setbeamercolor{block title}{bg=aaublue!65, fg=black} 
     \setbeamercolor{block body}{bg=aaublue!15, fg=black}
-\begin{block}{\textbf{Proposition}\ifx\empty#1\empty \else\textbf{:} #1 \fi}}{\end{block}}
+    \setbeamercolor{item}{fg=aaublue} 
+\begin{block}{\textbf{Proposition}\ifx\empty#1\empty\else~(#1)\fi\ifx\empty#2\empty\else\textbf{:}~#2\fi}}{\end{block}}
 
-\renewenvironment{corollary}[1][]{%
+\renewenvironment{corollary}[2][]{%
 	\setbeamercolor{block title}{bg=aaublue!65, fg=black} 
     \setbeamercolor{block body}{bg=aaublue!15, fg=black}
-\begin{block}{\textbf{Corollary}\ifx\empty#1\empty \else\textbf{:} #1 \fi}}{\end{block}}
+    \setbeamercolor{item}{fg=aaublue} 
+\begin{block}{\textbf{Corollary}\ifx\empty#1\empty\else~(#1)\fi\ifx\empty#2\empty\else\textbf{:}~#2\fi}}{\end{block}}
+
+\newenvironment{conjecture}[2][]{%
+	\setbeamercolor{block title}{bg=aaublue!65, fg=black} 
+    \setbeamercolor{block body}{bg=aaublue!15, fg=black}
+    \setbeamercolor{item}{fg=aaublue} 
+\begin{block}{\textbf{Conjecture}\ifx\empty#1\empty\else~(#1)\fi\ifx\empty#2\empty\else\textbf{:}~#2\fi}}{\end{block}}
 
 \renewenvironment{proof}[1][]{%
 	\setbeamercolor{block title}{bg=aaublue!65, fg=black} 
     \setbeamercolor{block body}{bg=aaublue!15, fg=black}
-\begin{block}{\emph{Proof}\ifx\empty#1\empty \else~(#1)\fi.}}{\hfill $\square$ \end{block}}
+    \setbeamercolor{item}{fg=aaublue} 
+\begin{block}{\emph{Proof}\ifx\empty#1\empty\else~(#1)\fi.}}{\hfill $\square$ \end{block}}
 
-\newenvironment{lproof}[1][]{\emph{Proof}\ifx\empty#1\empty \else~(#1)\fi.~}{\hfill $\square$} % 'loose' proof environment (without block)
+\newenvironment{lproof}[1][]{\emph{Proof}\ifx\empty#1\empty\else~(#1)\fi.~}{\hfill $\square$} % 'loose' proof environment (without block)
 
 %% Squared paper
 \newcommand\squaredpaper[2][0.5cm]{% 
-	\vskip 0.5\baselineskip%
-	\begin{tikzpicture}[gray!50,step=#1]
+	%\vskip 0.5\baselineskip%
+	\begin{tikzpicture}[aaublue!65,step=#1]
 		\pgfmathtruncatemacro\number{(\linewidth-\pgflinewidth)/#1}% maximale number of boxes per row
 		\draw (0,0) rectangle (\number*#1,#2*#1) (0,0) grid (\number*#1,#2*#1);
-	\end{tikzpicture} \\
+	\end{tikzpicture} \par
 }
+
+%% Bibliography
+\usepackage[
+	backend=biber, 
+	style=authoryear,
+	natbib=true, 
+	hyperref=true,
+]{biblatex} 
+
+\setbeamercolor{bibliography entry author}{fg=aaudarkblue}
+\setbeamercolor{bibliography entry note}{fg=black}
+
+\setbeamertemplate{bibliography item}{%
+  	\ifboolexpr{test {\ifentrytype{book}} or test {\ifentrytype{mvbook}}
+    		or test {\ifentrytype{collection}} or test {\ifentrytype{mvcollection}}
+    		or test {\ifentrytype{reference}} or test {\ifentrytype{mvreference}}}
+		{\setbeamertemplate{bibliography item}[book]}{%
+	\ifentrytype{online}{\setbeamertemplate{bibliography item}[online]}
+	{\setbeamertemplate{bibliography item}[article]}}%
+	\usebeamertemplate{bibliography item}}
 
 %% References 
 \RequirePackage{hyperref} 
