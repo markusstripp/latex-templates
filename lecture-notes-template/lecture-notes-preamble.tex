@@ -43,12 +43,62 @@
 	backgroundcolor=aaublue!15,
 	frametitlefont=\bfseries,
 	theoremtitlefont=\normalfont,
+	theoremseparator = {},
 	footnoteinside=false
 }
-\mdtheorem[style=theoremstyle]{theorem}[examplex]{Theorem} 
-\mdtheorem[style=theoremstyle]{proposition}[examplex]{Proposition} 
-\mdtheorem[style=theoremstyle]{lemma}[examplex]{Lemma} 
-\mdtheorem[style=theoremstyle]{corollary}[examplex]{Corollary} 
+
+% Theorem
+\mdtheorem[style=theoremstyle]{theoremx}[examplex]{Theorem} 
+\newenvironment{theorem}[1][]{% Add brackets around caption for the numbered environment
+    \begin{theoremx}[\ifx&#1&\else(#1)\fi]%
+}{%
+    \end{theoremx}%
+}
+\newenvironment{theorem*}[1][]{% add brackets around caption for the unnumbered environment
+    \begin{theoremx*}[\ifx&#1&\else(#1)\fi]%
+}{%
+    \end{theoremx*}%
+}
+
+% Propositon
+\mdtheorem[style=theoremstyle]{propositionx}[examplex]{Proposition} 
+\newenvironment{proposition}[1][]{% Add brackets around caption for the numbered environment
+    \begin{propositionx}[\ifx&#1&\else(#1)\fi]%
+}{%
+    \end{propositionx}%
+}
+\newenvironment{proposition*}[1][]{% add brackets around caption for the unnumbered environment
+    \begin{propositionx*}[\ifx&#1&\else(#1)\fi]%
+}{%
+    \end{propositionx*}%
+}
+
+% Lemma
+\mdtheorem[style=theoremstyle]{lemmax}[examplex]{Lemma} 
+\newenvironment{lemma}[1][]{% Add brackets around caption for the numbered environment
+    \begin{lemmax}[\ifx&#1&\else(#1)\fi]%
+}{%
+    \end{lemmax}%
+}
+\newenvironment{lemma*}[1][]{% add brackets around caption for the unnumbered environment
+    \begin{lemmax*}[\ifx&#1&\else(#1)\fi]%
+}{%
+    \end{lemmax*}%
+}
+
+% Proposition
+\mdtheorem[style=theoremstyle]{corollaryx}[examplex]{Corollary} 
+\newenvironment{corollary}[1][]{% Add brackets around caption for the numbered environment
+    \begin{corollaryx}[\ifx&#1&\else(#1)\fi]%
+}{%
+    \end{corollaryx}%
+}
+\newenvironment{corollary*}[1][]{% add brackets around caption for the unnumbered environment
+    \begin{corollaryx*}[\ifx&#1&\else(#1)\fi]%
+}{%
+    \end{corollaryx*}%
+}
+
 \mdfdefinestyle{definitionstyle}{ % Define new style for definitions
 	linecolor=aaulightgray!135,
 	linewidth=1pt,
@@ -61,32 +111,57 @@
 	backgroundcolor=aaulightgray!50,
 	frametitlefont=\bfseries,
 	theoremtitlefont=\normalfont,
+	theoremseparator = {},
 	footnoteinside=false
 }
-\mdtheorem[style=definitionstyle]{definition}[examplex]{Definition}
 
+% Definition
+\mdtheorem[style=definitionstyle]{definitionx}[examplex]{Definition}
+\newenvironment{definition}[1][]{% Add brackets around caption for the numbered environment
+    \begin{definitionx}[\ifx&#1&\else(#1)\fi]%
+}{%
+    \end{definitionx}%
+}
+\newenvironment{definition*}[1][]{% add brackets around caption for the unnumbered environment
+    \begin{definitionx*}[\ifx&#1&\else(#1)\fi]%
+}{%
+    \end{definitionx*}%
+}
+
+% Example
 \newtheoremstyle{examplestyle} % Define new style for examples (bold heading, linebreak, normal text)
 	{\topsep}{\topsep}
 	{}{}
 	{\bfseries}{}
 	{\newline}{}
 \theoremstyle{examplestyle} % Activate style
-\newtheorem{examplex}{Example} % New environment for examples
-\newenvironment{example} % Add triangle at the end of the example environment
+\newtheorem{examplex}{Example} % New environment for numbered examples
+\newtheorem*{examplexx}{Example} % New environment for unnumbered examples
+\newenvironment{example} % Add triangle at the end of the numbered example environment
 	{\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\examplex}
 	{\popQED\endexamplex}
+\newenvironment{example*} % Add triangle at the end of the unnumbered example environment
+	{\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\examplexx}
+	{\popQED\endexamplexx}
   
+% Remark/Notation
 \newtheoremstyle{remarkstyle} % Define new style for remarks (bold heading, nomral text)
 	{\topsep}{\topsep}
 	{}{}
 	{\bfseries}{.}
 	{5pt plus 1pt minus 1pt}{}
 \theoremstyle{remarkstyle} % Activate style
-\newtheorem{remarkx}[examplex]{Remark} % New environment for remarks
-\newenvironment{remark} % Add diamond at the end of an remark environment
+\newtheorem{remarkx}[examplex]{Remark} % New environment for numbered remarks
+\newtheorem*{remarkxx}{Remark} % New environment for unnumbered remarks
+\newenvironment{remark} % Add diamond at the end of an numbered remark environment
 	{\pushQED{\qed}\renewcommand{\qedsymbol}{$\diamond$}\remarkx}
 	{\popQED\endremarkx}
+\newenvironment{remark*} % Add diamond at the end of an unnumbered remark environment
+	{\pushQED{\qed}\renewcommand{\qedsymbol}{$\diamond$}\remarkxx}
+	{\popQED\endremarkxx}
 
+\newtheorem{notation}[examplex]{Notation} % New environments for numbered notation
+\newtheorem*{notation*}{Notation} % New environments for unnumbered notation
 
 %% References
 \usepackage[
@@ -95,7 +170,6 @@
 	natbib=true, 
 	hyperref=true,
 ]{biblatex} 
-\nocite{*}
 \let\oldprintbibliography\printbibliography
 \renewcommand{\printbibliography}{% adds new page and correct reference for the table of contents
 	\newpage \phantomsection
